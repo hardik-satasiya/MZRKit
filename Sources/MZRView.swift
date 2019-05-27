@@ -45,6 +45,34 @@ extension MZRView {
         }
     }
     
+    // MARK: - Scale Options
+    
+    public enum Origin: Int {
+        case center
+        #if os(OSX)
+        case leftTop
+        case rightTop
+        case leftBottom
+        case rightBottom
+        #else
+        case leftBottom
+        case rightBottom
+        case leftTop
+        case rightTop
+        #endif
+    }
+    
+    public enum Division: Int {
+        case by10
+        case by5
+        case by1
+    }
+    
+    public enum ScaleStyle {
+        case cross(CGFloat, Origin, Division)
+        case grid(Int)
+    }
+    
 }
 
 #if os(OSX)
@@ -67,17 +95,17 @@ public class MZRView: NSView {
     
     public override func mouseDown(with event: NSEvent) {
         let point = convert(event.locationInWindow, from: nil)
-        began(point)
+        viewModel.began(point)
     }
     
     public override func mouseDragged(with event: NSEvent) {
         let point = convert(event.locationInWindow, from: nil)
-        dragged(point)
+        viewModel.moved(point)
     }
     
     public override func mouseUp(with event: NSEvent) {
         let point = convert(event.locationInWindow, from: nil)
-        ended(point)
+        viewModel.ended(point)
     }
     
 }
@@ -102,22 +130,22 @@ public class MZRView: UIView {
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self), touches.count == 1 else { return }
-        began(point)
+        viewModel.began(point)
     }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self), touches.count == 1 else { return }
-        dragged(point)
+        viewModel.moved(point)
     }
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self), touches.count == 1 else { return }
-        ended(point)
+        viewModel.ended(point)
     }
     
     public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let point = touches.first?.location(in: self), touches.count == 1 else { return }
-        ended(point)
+        viewModel.ended(point)
     }
     
 }
@@ -128,33 +156,25 @@ extension MZRView {
     
     // MARK: - Internal Methods
     
-    func commonInit() {
+    private func refresh() {
+        #if os(OSX)
+        self.needsDisplay = true
+        #else
+        self.setNeedsDisplay()
+        #endif
+    }
+    
+    private func commonInit() {
         viewModel.shouldUpdate = { [unowned self] in
-            #if os(OSX)
-            self.needsDisplay = true
-            #else
-            self.setNeedsDisplay()
-            #endif
+            self.refresh()
         }
     }
     
-    func began(_ point: CGPoint) {
-        viewModel.began(point)
-    }
-    
-    func dragged(_ point: CGPoint) {
-        viewModel.moved(point)
-    }
-    
-    func ended(_ point: CGPoint) {
-        viewModel.ended(point)
-    }
-    
     public override func draw(_ dirtyRect: CGRect) {
-        viewModel.draw()
+        viewModel.draw(dirtyRect)
     }
     
-    // MARK: - Interfaces
+    // MARK: - Interface
     
     public var items: [MZRItem] {
         get {
@@ -171,6 +191,30 @@ extension MZRView {
         }
         set {
             viewModel.selectedItems = newValue
+        }
+    }
+    
+    public var scaleStyle: ScaleStyle {
+        get {
+            switch viewModel.scale.scaleStyle {
+            case .cross(let value, let origin, let div):
+                return .cross(value, Origin(rawValue: origin.rawValue)!, Division(rawValue: div.rawValue)!)
+                
+            case .grid(let value):
+                return .grid(value)
+            }
+        }
+        set {
+            switch newValue {
+            case .cross(let value, let origin, let div):
+                viewModel.scale.scaleStyle = .cross(value,
+                                                    MZRScale.Origin(rawValue: origin.rawValue)!,
+                                                    MZRScale.Division(rawValue: div.rawValue)!)
+                
+            case .grid(let value):
+                viewModel.scale.scaleStyle = .grid(value)
+            }
+            refresh()
         }
     }
     

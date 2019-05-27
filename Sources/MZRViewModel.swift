@@ -59,6 +59,8 @@ class MZRViewModel {
         }
     }
     
+    var scale = MZRScale()
+    
     // MARK: - Settings
     
     var outlineWidth = CGFloat(10)
@@ -301,17 +303,18 @@ class MZRViewModel {
             default:
                 item.drawPoints()
             }
-            
         }
     }
     
-    func draw() {
+    func draw(_ rect: CGRect) {
         guard let context = CGContext.current else { return }
         
         let currentItem = { () -> [MZRItem] in
             guard case .drawing(let item, _) = mode else { return [] }
             return [item]
         }()
+        
+        scale.draw(rect)
         
         for item in (sortedItems() + currentItem) {
             if item.isCompleted {
