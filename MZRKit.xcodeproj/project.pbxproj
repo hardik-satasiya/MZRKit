@@ -61,6 +61,8 @@
 		853A69E3225AE6390015CC29 /* BezierPath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69DA225ADFAF0015CC29 /* BezierPath+Ext.swift */; };
 		8553B9BC2296838E0006A57F /* MZRTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8553B9BB2296838E0006A57F /* MZRTextField.swift */; };
 		8553B9BD2296838E0006A57F /* MZRTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8553B9BB2296838E0006A57F /* MZRTextField.swift */; };
+		859F626F229B996600347E4C /* MZRScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F626E229B996600347E4C /* MZRScale.swift */; };
+		859F6270229B996600347E4C /* MZRScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F626E229B996600347E4C /* MZRScale.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,7 @@
 		853A69D6225ADF2A0015CC29 /* CGMutablePath+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGMutablePath+Ext.swift"; sourceTree = "<group>"; };
 		853A69DA225ADFAF0015CC29 /* BezierPath+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BezierPath+Ext.swift"; sourceTree = "<group>"; };
 		8553B9BB2296838E0006A57F /* MZRTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRTextField.swift; sourceTree = "<group>"; };
+		859F626E229B996600347E4C /* MZRScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRScale.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +199,7 @@
 				852BA66B2293E14D00457499 /* MZRPencil.swift */,
 				8553B9BB2296838E0006A57F /* MZRTextField.swift */,
 				63C97B79229AAD2100669F07 /* MZRRotator.swift */,
+				859F626E229B996600347E4C /* MZRScale.swift */,
 			);
 			path = "Built-In Tools";
 			sourceTree = "<group>";
@@ -340,6 +344,7 @@
 			files = (
 				63FF301A2257E595007FA886 /* Image+Canvase.swift in Sources */,
 				852BA6692293E14400457499 /* MZRAngle3.swift in Sources */,
+				859F626F229B996600347E4C /* MZRScale.swift in Sources */,
 				63FF3064225A71EF007FA886 /* Arc.swift in Sources */,
 				852BA66C2293E14D00457499 /* MZRPencil.swift in Sources */,
 				8553B9BC2296838E0006A57F /* MZRTextField.swift in Sources */,
@@ -373,6 +378,7 @@
 			files = (
 				63FF301B2257E595007FA886 /* Image+Canvase.swift in Sources */,
 				852BA66A2293E14400457499 /* MZRAngle3.swift in Sources */,
+				859F6270229B996600347E4C /* MZRScale.swift in Sources */,
 				63FF3065225A71EF007FA886 /* Arc.swift in Sources */,
 				852BA66D2293E14D00457499 /* MZRPencil.swift in Sources */,
 				8553B9BD2296838E0006A57F /* MZRTextField.swift in Sources */,
