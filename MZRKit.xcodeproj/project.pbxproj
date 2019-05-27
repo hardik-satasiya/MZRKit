@@ -1,0 +1,786 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		633EB127225799E100918D2E /* MZRKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 633EB1132257971D00918D2E /* MZRKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		633EB129225799FA00918D2E /* MZRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EB128225799FA00918D2E /* MZRViewModel.swift */; };
+		633EB12A225799FA00918D2E /* MZRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EB128225799FA00918D2E /* MZRViewModel.swift */; };
+		633EB13322579C8F00918D2E /* MZRItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EB13222579C8F00918D2E /* MZRItem.swift */; };
+		633EB13422579C8F00918D2E /* MZRItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EB13222579C8F00918D2E /* MZRItem.swift */; };
+		633EB1782257A1A200918D2E /* MZRKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 633EB1132257971D00918D2E /* MZRKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63C97B7A229AAD2100669F07 /* MZRRotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C97B79229AAD2100669F07 /* MZRRotator.swift */; };
+		63C97B7B229AAD2100669F07 /* MZRRotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C97B79229AAD2100669F07 /* MZRRotator.swift */; };
+		63FF301A2257E595007FA886 /* Image+Canvase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF300B2257E595007FA886 /* Image+Canvase.swift */; };
+		63FF301B2257E595007FA886 /* Image+Canvase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF300B2257E595007FA886 /* Image+Canvase.swift */; };
+		63FF30502258CD65007FA886 /* CGPoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF304F2258CD65007FA886 /* CGPoint+Ext.swift */; };
+		63FF30512258CD65007FA886 /* CGPoint+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF304F2258CD65007FA886 /* CGPoint+Ext.swift */; };
+		63FF3064225A71EF007FA886 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF305E225A71EF007FA886 /* Arc.swift */; };
+		63FF3065225A71EF007FA886 /* Arc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF305E225A71EF007FA886 /* Arc.swift */; };
+		63FF3068225A71EF007FA886 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3060225A71EF007FA886 /* Line.swift */; };
+		63FF3069225A71EF007FA886 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3060225A71EF007FA886 /* Line.swift */; };
+		63FF306A225A71EF007FA886 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3061225A71EF007FA886 /* Circle.swift */; };
+		63FF306B225A71EF007FA886 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3061225A71EF007FA886 /* Circle.swift */; };
+		850D4913229546DB0099816F /* Measurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D4912229546DB0099816F /* Measurable.swift */; };
+		850D4914229546DB0099816F /* Measurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D4912229546DB0099816F /* Measurable.swift */; };
+		852BA6412293D52A00457499 /* MZRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6402293D52A00457499 /* MZRView.swift */; };
+		852BA6422293D52A00457499 /* MZRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6402293D52A00457499 /* MZRView.swift */; };
+		852BA6442293D6BE00457499 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6432293D6BE00457499 /* Utils.swift */; };
+		852BA6452293D6BE00457499 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6432293D6BE00457499 /* Utils.swift */; };
+		852BA6472293D74500457499 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6462293D74500457499 /* Square.swift */; };
+		852BA6482293D74500457499 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6462293D74500457499 /* Square.swift */; };
+		852BA6512293E0F600457499 /* MZRLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6502293E0F600457499 /* MZRLine.swift */; };
+		852BA6522293E0F600457499 /* MZRLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6502293E0F600457499 /* MZRLine.swift */; };
+		852BA6542293E0FB00457499 /* MZRPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6532293E0FB00457499 /* MZRPolyline.swift */; };
+		852BA6552293E0FB00457499 /* MZRPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6532293E0FB00457499 /* MZRPolyline.swift */; };
+		852BA6572293E10600457499 /* MZRRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6562293E10600457499 /* MZRRect.swift */; };
+		852BA6582293E10600457499 /* MZRRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6562293E10600457499 /* MZRRect.swift */; };
+		852BA65A2293E10C00457499 /* MZRSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6592293E10C00457499 /* MZRSquare.swift */; };
+		852BA65B2293E10C00457499 /* MZRSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6592293E10C00457499 /* MZRSquare.swift */; };
+		852BA65D2293E12900457499 /* MZRCircle1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA65C2293E12900457499 /* MZRCircle1.swift */; };
+		852BA65E2293E12900457499 /* MZRCircle1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA65C2293E12900457499 /* MZRCircle1.swift */; };
+		852BA6602293E12F00457499 /* MZRCircle2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA65F2293E12F00457499 /* MZRCircle2.swift */; };
+		852BA6612293E12F00457499 /* MZRCircle2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA65F2293E12F00457499 /* MZRCircle2.swift */; };
+		852BA6632293E13B00457499 /* MZRAngle1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6622293E13B00457499 /* MZRAngle1.swift */; };
+		852BA6642293E13B00457499 /* MZRAngle1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6622293E13B00457499 /* MZRAngle1.swift */; };
+		852BA6662293E14000457499 /* MZRAngle2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6652293E14000457499 /* MZRAngle2.swift */; };
+		852BA6672293E14000457499 /* MZRAngle2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6652293E14000457499 /* MZRAngle2.swift */; };
+		852BA6692293E14400457499 /* MZRAngle3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6682293E14400457499 /* MZRAngle3.swift */; };
+		852BA66A2293E14400457499 /* MZRAngle3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6682293E14400457499 /* MZRAngle3.swift */; };
+		852BA66C2293E14D00457499 /* MZRPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA66B2293E14D00457499 /* MZRPencil.swift */; };
+		852BA66D2293E14D00457499 /* MZRPencil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA66B2293E14D00457499 /* MZRPencil.swift */; };
+		853A69D0225ADD270015CC29 /* CGContext+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69CF225ADD270015CC29 /* CGContext+Ext.swift */; };
+		853A69D4225ADDDF0015CC29 /* CGContext+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69CF225ADD270015CC29 /* CGContext+Ext.swift */; };
+		853A69D7225ADF2A0015CC29 /* CGMutablePath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69D6225ADF2A0015CC29 /* CGMutablePath+Ext.swift */; };
+		853A69D8225ADF2A0015CC29 /* CGMutablePath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69D6225ADF2A0015CC29 /* CGMutablePath+Ext.swift */; };
+		853A69DD225AE1860015CC29 /* BezierPath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69DA225ADFAF0015CC29 /* BezierPath+Ext.swift */; };
+		853A69E3225AE6390015CC29 /* BezierPath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A69DA225ADFAF0015CC29 /* BezierPath+Ext.swift */; };
+		8553B9BC2296838E0006A57F /* MZRTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8553B9BB2296838E0006A57F /* MZRTextField.swift */; };
+		8553B9BD2296838E0006A57F /* MZRTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8553B9BB2296838E0006A57F /* MZRTextField.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		633EB1102257971D00918D2E /* MZRKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MZRKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		633EB1132257971D00918D2E /* MZRKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MZRKit.h; sourceTree = "<group>"; };
+		633EB1142257971D00918D2E /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		633EB11E2257973C00918D2E /* MZRKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MZRKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		633EB1212257973C00918D2E /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
+		633EB128225799FA00918D2E /* MZRViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRViewModel.swift; sourceTree = "<group>"; };
+		633EB13222579C8F00918D2E /* MZRItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRItem.swift; sourceTree = "<group>"; };
+		63C97B79229AAD2100669F07 /* MZRRotator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRRotator.swift; sourceTree = "<group>"; };
+		63FF300B2257E595007FA886 /* Image+Canvase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Canvase.swift"; sourceTree = "<group>"; };
+		63FF304F2258CD65007FA886 /* CGPoint+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Ext.swift"; sourceTree = "<group>"; };
+		63FF305E225A71EF007FA886 /* Arc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
+		63FF3060225A71EF007FA886 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		63FF3061225A71EF007FA886 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		850D4912229546DB0099816F /* Measurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurable.swift; sourceTree = "<group>"; };
+		852BA6402293D52A00457499 /* MZRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRView.swift; sourceTree = "<group>"; };
+		852BA6432293D6BE00457499 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		852BA6462293D74500457499 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		852BA6502293E0F600457499 /* MZRLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRLine.swift; sourceTree = "<group>"; };
+		852BA6532293E0FB00457499 /* MZRPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRPolyline.swift; sourceTree = "<group>"; };
+		852BA6562293E10600457499 /* MZRRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRRect.swift; sourceTree = "<group>"; };
+		852BA6592293E10C00457499 /* MZRSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRSquare.swift; sourceTree = "<group>"; };
+		852BA65C2293E12900457499 /* MZRCircle1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRCircle1.swift; sourceTree = "<group>"; };
+		852BA65F2293E12F00457499 /* MZRCircle2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRCircle2.swift; sourceTree = "<group>"; };
+		852BA6622293E13B00457499 /* MZRAngle1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRAngle1.swift; sourceTree = "<group>"; };
+		852BA6652293E14000457499 /* MZRAngle2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRAngle2.swift; sourceTree = "<group>"; };
+		852BA6682293E14400457499 /* MZRAngle3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRAngle3.swift; sourceTree = "<group>"; };
+		852BA66B2293E14D00457499 /* MZRPencil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRPencil.swift; sourceTree = "<group>"; };
+		853A69CF225ADD270015CC29 /* CGContext+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGContext+Ext.swift"; sourceTree = "<group>"; };
+		853A69D6225ADF2A0015CC29 /* CGMutablePath+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGMutablePath+Ext.swift"; sourceTree = "<group>"; };
+		853A69DA225ADFAF0015CC29 /* BezierPath+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BezierPath+Ext.swift"; sourceTree = "<group>"; };
+		8553B9BB2296838E0006A57F /* MZRTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRTextField.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		633EB10D2257971D00918D2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633EB11B2257973C00918D2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		633EB104225796FA00918D2E = {
+			isa = PBXGroup;
+			children = (
+				633EB1262257981F00918D2E /* Sources */,
+				633EB1112257971D00918D2E /* Products */,
+				8508C8092297C5DA0081ABE3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		633EB1112257971D00918D2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				633EB1102257971D00918D2E /* MZRKit.framework */,
+				633EB11E2257973C00918D2E /* MZRKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		633EB1262257981F00918D2E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				63FF306C225D4864007FA886 /* Models */,
+				633EB13122579BE300918D2E /* Utils */,
+				852BA64F2293E0C600457499 /* Built-In Tools */,
+				633EB13222579C8F00918D2E /* MZRItem.swift */,
+				633EB128225799FA00918D2E /* MZRViewModel.swift */,
+				852BA6402293D52A00457499 /* MZRView.swift */,
+				633EB1132257971D00918D2E /* MZRKit.h */,
+				633EB1142257971D00918D2E /* Info-iOS.plist */,
+				633EB1212257973C00918D2E /* Info-macOS.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		633EB13122579BE300918D2E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				852BA6432293D6BE00457499 /* Utils.swift */,
+				63FF304F2258CD65007FA886 /* CGPoint+Ext.swift */,
+				853A69CF225ADD270015CC29 /* CGContext+Ext.swift */,
+				853A69D6225ADF2A0015CC29 /* CGMutablePath+Ext.swift */,
+				853A69DA225ADFAF0015CC29 /* BezierPath+Ext.swift */,
+				63FF300B2257E595007FA886 /* Image+Canvase.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		63FF306C225D4864007FA886 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				63FF305E225A71EF007FA886 /* Arc.swift */,
+				63FF3060225A71EF007FA886 /* Line.swift */,
+				63FF3061225A71EF007FA886 /* Circle.swift */,
+				852BA6462293D74500457499 /* Square.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8508C8092297C5DA0081ABE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		852BA64F2293E0C600457499 /* Built-In Tools */ = {
+			isa = PBXGroup;
+			children = (
+				850D4912229546DB0099816F /* Measurable.swift */,
+				852BA6502293E0F600457499 /* MZRLine.swift */,
+				852BA6532293E0FB00457499 /* MZRPolyline.swift */,
+				852BA6562293E10600457499 /* MZRRect.swift */,
+				852BA6592293E10C00457499 /* MZRSquare.swift */,
+				852BA65C2293E12900457499 /* MZRCircle1.swift */,
+				852BA65F2293E12F00457499 /* MZRCircle2.swift */,
+				852BA6622293E13B00457499 /* MZRAngle1.swift */,
+				852BA6652293E14000457499 /* MZRAngle2.swift */,
+				852BA6682293E14400457499 /* MZRAngle3.swift */,
+				852BA66B2293E14D00457499 /* MZRPencil.swift */,
+				8553B9BB2296838E0006A57F /* MZRTextField.swift */,
+				63C97B79229AAD2100669F07 /* MZRRotator.swift */,
+			);
+			path = "Built-In Tools";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		633EB10B2257971D00918D2E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633EB1782257A1A200918D2E /* MZRKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633EB1192257973C00918D2E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633EB127225799E100918D2E /* MZRKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		633EB10F2257971D00918D2E /* MZRKit iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 633EB1162257971D00918D2E /* Build configuration list for PBXNativeTarget "MZRKit iOS" */;
+			buildPhases = (
+				633EB10B2257971D00918D2E /* Headers */,
+				633EB10C2257971D00918D2E /* Sources */,
+				633EB10D2257971D00918D2E /* Frameworks */,
+				633EB10E2257971D00918D2E /* Resources */,
+				633EB1862257A7C000918D2E /* Universal Framework */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MZRKit iOS";
+			productName = "MZRKit iOS";
+			productReference = 633EB1102257971D00918D2E /* MZRKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		633EB11D2257973C00918D2E /* MZRKit macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 633EB1232257973C00918D2E /* Build configuration list for PBXNativeTarget "MZRKit macOS" */;
+			buildPhases = (
+				633EB1192257973C00918D2E /* Headers */,
+				633EB11A2257973C00918D2E /* Sources */,
+				633EB11B2257973C00918D2E /* Frameworks */,
+				633EB11C2257973C00918D2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MZRKit macOS";
+			productName = "MZRKit macOS";
+			productReference = 633EB11E2257973C00918D2E /* MZRKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		633EB105225796FA00918D2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				TargetAttributes = {
+					633EB10F2257971D00918D2E = {
+						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
+					};
+					633EB11D2257973C00918D2E = {
+						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = 633EB108225796FA00918D2E /* Build configuration list for PBXProject "MZRKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 633EB104225796FA00918D2E;
+			productRefGroup = 633EB1112257971D00918D2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				633EB10F2257971D00918D2E /* MZRKit iOS */,
+				633EB11D2257973C00918D2E /* MZRKit macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		633EB10E2257971D00918D2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633EB11C2257973C00918D2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		633EB1862257A7C000918D2E /* Universal Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Universal Framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: Detected, stopping\"\nelse\nexport ALREADYINVOKED=\"true\"\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iosuniversal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${TARGET_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${TARGET_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		633EB10C2257971D00918D2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63FF301A2257E595007FA886 /* Image+Canvase.swift in Sources */,
+				852BA6692293E14400457499 /* MZRAngle3.swift in Sources */,
+				63FF3064225A71EF007FA886 /* Arc.swift in Sources */,
+				852BA66C2293E14D00457499 /* MZRPencil.swift in Sources */,
+				8553B9BC2296838E0006A57F /* MZRTextField.swift in Sources */,
+				852BA6572293E10600457499 /* MZRRect.swift in Sources */,
+				853A69D0225ADD270015CC29 /* CGContext+Ext.swift in Sources */,
+				852BA6472293D74500457499 /* Square.swift in Sources */,
+				852BA6542293E0FB00457499 /* MZRPolyline.swift in Sources */,
+				633EB13322579C8F00918D2E /* MZRItem.swift in Sources */,
+				63FF306A225A71EF007FA886 /* Circle.swift in Sources */,
+				850D4913229546DB0099816F /* Measurable.swift in Sources */,
+				852BA65A2293E10C00457499 /* MZRSquare.swift in Sources */,
+				852BA6632293E13B00457499 /* MZRAngle1.swift in Sources */,
+				852BA6602293E12F00457499 /* MZRCircle2.swift in Sources */,
+				852BA6442293D6BE00457499 /* Utils.swift in Sources */,
+				853A69D7225ADF2A0015CC29 /* CGMutablePath+Ext.swift in Sources */,
+				853A69E3225AE6390015CC29 /* BezierPath+Ext.swift in Sources */,
+				852BA6512293E0F600457499 /* MZRLine.swift in Sources */,
+				633EB129225799FA00918D2E /* MZRViewModel.swift in Sources */,
+				852BA6662293E14000457499 /* MZRAngle2.swift in Sources */,
+				63C97B7A229AAD2100669F07 /* MZRRotator.swift in Sources */,
+				852BA65D2293E12900457499 /* MZRCircle1.swift in Sources */,
+				63FF30502258CD65007FA886 /* CGPoint+Ext.swift in Sources */,
+				63FF3068225A71EF007FA886 /* Line.swift in Sources */,
+				852BA6412293D52A00457499 /* MZRView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		633EB11A2257973C00918D2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63FF301B2257E595007FA886 /* Image+Canvase.swift in Sources */,
+				852BA66A2293E14400457499 /* MZRAngle3.swift in Sources */,
+				63FF3065225A71EF007FA886 /* Arc.swift in Sources */,
+				852BA66D2293E14D00457499 /* MZRPencil.swift in Sources */,
+				8553B9BD2296838E0006A57F /* MZRTextField.swift in Sources */,
+				852BA6582293E10600457499 /* MZRRect.swift in Sources */,
+				853A69D4225ADDDF0015CC29 /* CGContext+Ext.swift in Sources */,
+				852BA6482293D74500457499 /* Square.swift in Sources */,
+				852BA6552293E0FB00457499 /* MZRPolyline.swift in Sources */,
+				633EB13422579C8F00918D2E /* MZRItem.swift in Sources */,
+				63FF306B225A71EF007FA886 /* Circle.swift in Sources */,
+				850D4914229546DB0099816F /* Measurable.swift in Sources */,
+				852BA65B2293E10C00457499 /* MZRSquare.swift in Sources */,
+				852BA6642293E13B00457499 /* MZRAngle1.swift in Sources */,
+				852BA6612293E12F00457499 /* MZRCircle2.swift in Sources */,
+				852BA6452293D6BE00457499 /* Utils.swift in Sources */,
+				853A69D8225ADF2A0015CC29 /* CGMutablePath+Ext.swift in Sources */,
+				633EB12A225799FA00918D2E /* MZRViewModel.swift in Sources */,
+				852BA6522293E0F600457499 /* MZRLine.swift in Sources */,
+				63FF30512258CD65007FA886 /* CGPoint+Ext.swift in Sources */,
+				852BA6672293E14000457499 /* MZRAngle2.swift in Sources */,
+				63C97B7B229AAD2100669F07 /* MZRRotator.swift in Sources */,
+				852BA65E2293E12900457499 /* MZRCircle1.swift in Sources */,
+				63FF3069225A71EF007FA886 /* Line.swift in Sources */,
+				853A69DD225AE1860015CC29 /* BezierPath+Ext.swift in Sources */,
+				852BA6422293D52A00457499 /* MZRView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		633EB109225796FA00918D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Debug;
+		};
+		633EB10A225796FA00918D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Release;
+		};
+		633EB1172257971D00918D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B8F5X7B8AQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Sources/info-iOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scchnxx.$(PROJECT_NAME)";
+				PRODUCT_NAME = MZRKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		633EB1182257971D00918D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B8F5X7B8AQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Sources/info-iOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scchnxx.$(PROJECT_NAME)";
+				PRODUCT_NAME = MZRKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		633EB1242257973C00918D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B8F5X7B8AQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Sources/info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scchnxx.$(PROJECT_NAME)";
+				PRODUCT_NAME = MZRKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		633EB1252257973C00918D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B8F5X7B8AQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Sources/info-macOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scchnxx.$(PROJECT_NAME)";
+				PRODUCT_NAME = MZRKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		633EB108225796FA00918D2E /* Build configuration list for PBXProject "MZRKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633EB109225796FA00918D2E /* Debug */,
+				633EB10A225796FA00918D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		633EB1162257971D00918D2E /* Build configuration list for PBXNativeTarget "MZRKit iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633EB1172257971D00918D2E /* Debug */,
+				633EB1182257971D00918D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		633EB1232257973C00918D2E /* Build configuration list for PBXNativeTarget "MZRKit macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633EB1242257973C00918D2E /* Debug */,
+				633EB1252257973C00918D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 633EB105225796FA00918D2E /* Project object */;
+}

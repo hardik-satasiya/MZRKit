@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		63267537229A6D3900AB2093 /* MZRKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FF303D22589240007FA886 /* MZRKit.framework */; };
+		63267538229A6D3900AB2093 /* MZRKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63FF303D22589240007FA886 /* MZRKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		633EB14322579FA300918D2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EB14222579FA300918D2E /* AppDelegate.swift */; };
+		633EB14522579FA300918D2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EB14422579FA300918D2E /* ViewController.swift */; };
+		633EB14722579FA500918D2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 633EB14622579FA500918D2E /* Assets.xcassets */; };
+		633EB14A22579FA500918D2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633EB14822579FA500918D2E /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		63267539229A6D3900AB2093 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63FF303522589240007FA886 /* MZRKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 633EB11D2257973C00918D2E;
+			remoteInfo = "MZRKit macOS";
+		};
+		63FF303A22589240007FA886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63FF303522589240007FA886 /* MZRKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 633EB1102257971D00918D2E;
+			remoteInfo = "MZRKit iOS";
+		};
+		63FF303C22589240007FA886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63FF303522589240007FA886 /* MZRKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 633EB11E2257973C00918D2E;
+			remoteInfo = "MZRKit macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6326753B229A6D3900AB2093 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63267538229A6D3900AB2093 /* MZRKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		633EB13F22579FA300918D2E /* MZRKitDemo macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MZRKitDemo macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		633EB14222579FA300918D2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		633EB14422579FA300918D2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		633EB14622579FA500918D2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		633EB14922579FA500918D2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		633EB14B22579FA500918D2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63599554229A77A400633EAF /* MZRKitDemo macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MZRKitDemo macOS.entitlements"; sourceTree = "<group>"; };
+		63FF303522589240007FA886 /* MZRKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MZRKit.xcodeproj; path = ../../MZRKit.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		633EB13C22579FA300918D2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63267537229A6D3900AB2093 /* MZRKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		633EB13622579FA300918D2E = {
+			isa = PBXGroup;
+			children = (
+				63FF303522589240007FA886 /* MZRKit.xcodeproj */,
+				633EB14122579FA300918D2E /* MZRKitDemo macOS */,
+				633EB14022579FA300918D2E /* Products */,
+				853A69D2225ADD9A0015CC29 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		633EB14022579FA300918D2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				633EB13F22579FA300918D2E /* MZRKitDemo macOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		633EB14122579FA300918D2E /* MZRKitDemo macOS */ = {
+			isa = PBXGroup;
+			children = (
+				633EB14222579FA300918D2E /* AppDelegate.swift */,
+				633EB14422579FA300918D2E /* ViewController.swift */,
+				633EB14622579FA500918D2E /* Assets.xcassets */,
+				633EB14822579FA500918D2E /* Main.storyboard */,
+				633EB14B22579FA500918D2E /* Info.plist */,
+				63599554229A77A400633EAF /* MZRKitDemo macOS.entitlements */,
+			);
+			path = "MZRKitDemo macOS";
+			sourceTree = "<group>";
+		};
+		63FF303622589240007FA886 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63FF303B22589240007FA886 /* MZRKit.framework */,
+				63FF303D22589240007FA886 /* MZRKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		853A69D2225ADD9A0015CC29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		633EB13E22579FA300918D2E /* MZRKitDemo macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 633EB14F22579FA500918D2E /* Build configuration list for PBXNativeTarget "MZRKitDemo macOS" */;
+			buildPhases = (
+				633EB13B22579FA300918D2E /* Sources */,
+				633EB13C22579FA300918D2E /* Frameworks */,
+				633EB13D22579FA300918D2E /* Resources */,
+				6326753B229A6D3900AB2093 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6326753A229A6D3900AB2093 /* PBXTargetDependency */,
+			);
+			name = "MZRKitDemo macOS";
+			productName = macOS;
+			productReference = 633EB13F22579FA300918D2E /* MZRKitDemo macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		633EB13722579FA300918D2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = scchnxx;
+				TargetAttributes = {
+					633EB13E22579FA300918D2E = {
+						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 633EB13A22579FA300918D2E /* Build configuration list for PBXProject "MZRKitDemo macOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 633EB13622579FA300918D2E;
+			productRefGroup = 633EB14022579FA300918D2E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 63FF303622589240007FA886 /* Products */;
+					ProjectRef = 63FF303522589240007FA886 /* MZRKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				633EB13E22579FA300918D2E /* MZRKitDemo macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		63FF303B22589240007FA886 /* MZRKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MZRKit.framework;
+			remoteRef = 63FF303A22589240007FA886 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63FF303D22589240007FA886 /* MZRKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MZRKit.framework;
+			remoteRef = 63FF303C22589240007FA886 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		633EB13D22579FA300918D2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633EB14722579FA500918D2E /* Assets.xcassets in Resources */,
+				633EB14A22579FA500918D2E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		633EB13B22579FA300918D2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				633EB14522579FA300918D2E /* ViewController.swift in Sources */,
+				633EB14322579FA300918D2E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6326753A229A6D3900AB2093 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MZRKit macOS";
+			targetProxy = 63267539229A6D3900AB2093 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		633EB14822579FA500918D2E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				633EB14922579FA500918D2E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		633EB14D22579FA500918D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		633EB14E22579FA500918D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		633EB15022579FA500918D2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B8F5X7B8AQ;
+				INFOPLIST_FILE = "MZRKitDemo macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scchnxx.MZRKitDemo-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		633EB15122579FA500918D2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = B8F5X7B8AQ;
+				INFOPLIST_FILE = "MZRKitDemo macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scchnxx.MZRKitDemo-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		633EB13A22579FA300918D2E /* Build configuration list for PBXProject "MZRKitDemo macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633EB14D22579FA500918D2E /* Debug */,
+				633EB14E22579FA500918D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		633EB14F22579FA500918D2E /* Build configuration list for PBXNativeTarget "MZRKitDemo macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				633EB15022579FA500918D2E /* Debug */,
+				633EB15122579FA500918D2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 633EB13722579FA300918D2E /* Project object */;
+}
