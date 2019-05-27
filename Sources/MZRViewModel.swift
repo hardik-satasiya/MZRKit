@@ -61,7 +61,7 @@ class MZRViewModel {
     
     // MARK: - Settings
     
-    var outlineWidth = CGFloat(5)
+    var outlineWidth = CGFloat(10)
     
     var pointOutline = CGFloat(10)
     
@@ -78,21 +78,31 @@ class MZRViewModel {
     
     // MARK: - Getters
     
-    private func makeOutlinePath(_ path: CGPath) -> CGPath {
-        return path.copy(strokingWithWidth: outlineWidth,
-                         lineCap: .round, lineJoin: .round, miterLimit: 10)
+    /// Selected items > unselected items.
+    private func sortedItems() -> [MZRItem] {
+        let selecteds = selectedItems.reversed()
+        let others = Set(items).subtracting(selecteds)
+        return selecteds + others.sorted { self.items.firstIndex(of: $0)! > self.items.firstIndex(of: $1)! }
+    }
+    
+    private func outlinePath(item: MZRItem) -> CGPath? {
+        guard let path = item.path() else { return nil }
+        switch item.size {
+        case .inf(continuous: let continuous, canCut: _) where continuous:
+            let boundingBox = path.boundingBox.insetBy(dx: -10, dy: -10)
+            return CGPath(rect: boundingBox, transform: nil)
+        default:
+            return path.copy(strokingWithWidth: outlineWidth, lineCap: .round, lineJoin: .round, miterLimit: 10)
+        }
     }
     
     private func item(at location: CGPoint) -> MZRItem? {
-        return { () -> MZRItem? in
-            return items.reversed().first(where: { item in
-                guard let path = item.path() else { return false }
-                return makeOutlinePath(path).contains(location)
-            })
-        }()
+        let items = sortedItems()
+        guard let index = items.compactMap(outlinePath).firstIndex(where: { $0.contains(location) }) else { return nil }
+        return items[index]
     }
     
-    /// Returns item and position of a non inf size selected item or nil if nothing is selected.
+    /// Returns item and position of a non `inf` size selected item or nil if nothing is selected.
     private func position(at location: CGPoint) -> (MZRItem, MZRItem.Position)? {
         guard let selectedItem = selectedItems.first, selectedItems.count == 1 else { return nil }
         if case .inf(let continuous, _) = selectedItem.size, continuous {
@@ -282,16 +292,16 @@ class MZRViewModel {
         default:
             switch item.size {
             case .inf(continuous: let continuous, canCut: _) where continuous:
-                guard let path = item.path() else { break }
-                let boundingBox = path.boundingBox.insetBy(dx: -10, dy: -10)
+                guard let path = outlinePath(item: item) else { break }
                 context.saveGState()
                 context.setLineDash(phase: 0, lengths: [4, 4])
-                context.addRect(boundingBox)
+                context.addPath(path)
                 context.strokePath()
                 context.restoreGState()
             default:
                 item.drawPoints()
             }
+            
         }
     }
     
@@ -303,7 +313,7 @@ class MZRViewModel {
             return [item]
         }()
         
-        for item in (items.reversed() + currentItem) {
+        for item in (sortedItems() + currentItem) {
             if item.isCompleted {
                 item.draw()
                 drawOutlineIfNeeded(item: item)
