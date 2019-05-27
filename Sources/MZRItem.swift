@@ -63,9 +63,17 @@ public class MZRItem {
     
     public internal(set) var points = [[CGPoint]]()
     
+    // MARK: - Color Settings
+    
     public internal(set) var color = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1)
     
-    public internal(set) var pointColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1)
+    public internal(set) var pointBorderColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1)
+    
+    public internal(set) var pointColor = MZRMakeCGColor(r: 1, g: 1, b: 1, a: 1)
+    
+    public internal(set) var markedPointColor = MZRMakeCGColor(r: 0, g: 0.5, b: 1, a: 1)
+    
+    // MARK: - Rotation Settings
     
     public internal(set) var rotationAnchor = Anchor.position((0, 0))
     
@@ -162,9 +170,8 @@ public class MZRItem {
         let path = CGMutablePath()
         var corners = [CGPoint]()
         for i in 0...3 {
-            let i = CGFloat(i)
-            let r = .pi / 4 + (.pi / 2 * i)
-            let corner = point.extended(length: pointRadius, angle: r)
+            let r = .pi / 4 + (.pi / 2 * CGFloat(i))
+            let corner = point.extended(length: pointRadius, angle: r + rotation)
             corners.append(corner)
         }
         path.addLines(between: corners)
@@ -180,14 +187,11 @@ public class MZRItem {
         
         for (col, section) in points.enumerated() {
             for (row, point) in section.enumerated()  {context.addPath(pointBoxPath(point))
-                if let marked = marked, marked.contains(where: { $0 == (col, row) }) {
-                    context.setFillColor(MZRMakeCGColor(r: 0, g: 0.5, b: 1, a: 1))
-                } else {
-                    context.setFillColor(MZRMakeCGColor(r: 1, g: 1, b: 1, a: 1))
-                }
+                let bgColor = (marked?.contains { $0 == (col, row) } == true) ? markedPointColor : pointColor
+                context.setFillColor(bgColor)
                 context.fillPath()
                 context.addPath(pointBoxPath(point))
-                context.setStrokeColor(MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1))
+                context.setStrokeColor(pointBorderColor)
                 context.strokePath()
             }
         }
