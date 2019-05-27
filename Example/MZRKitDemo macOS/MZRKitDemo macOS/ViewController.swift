@@ -34,6 +34,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var mzrView: MZRView!
     @IBOutlet weak var itemListButton: NSPopUpButton!
     @IBOutlet weak var rotationSlider: NSSlider!
+    @IBOutlet weak var scaleTextField: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,11 @@ class ViewController: NSViewController {
     
     @IBAction func delete(_ sender: Any) {
         mzrView.deleteSelectedItems()
+    }
+    
+    @IBAction func scaleTextFieldValueChanged(_ sender: NSTextField) {
+        guard let doubleValue = Double(sender.stringValue) else { return }
+        mzrView.scaleStyle = .cross(CGFloat(doubleValue), .center, .by10)
     }
     
     @IBAction func makeItem(_ sender: Any) {
