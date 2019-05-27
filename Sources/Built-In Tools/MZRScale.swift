@@ -49,8 +49,8 @@ extension MZRScale {
         
         func length(at index: Int) -> CGFloat {
             switch self {
-            case .by10: return (index % 10 == 0) ? 20 : ((index % 5 == 0) ? 10 : 3)
-            case .by5: return (index % 5 == 0) ? 20 : 10
+            case .by10: return (index % 10 == 0) ? 15 : ((index % 5 == 0) ? 10 : 5)
+            case .by5: return (index % 5 == 0) ? 15 : 10
             case .by1: return 10
             }
         }
@@ -88,7 +88,7 @@ class MZRScale {
         
         for direction in directions {
             var current = pOrigin
-            var i = 0
+            var i = 1
             
             while (current.x >= 0 && rect.maxX >= current.x) && (current.y >= 0 && rect.maxY >= current.y) {
                 current = CGPoint(x: current.x + direction.x * step, y: current.y + direction.y * step)
