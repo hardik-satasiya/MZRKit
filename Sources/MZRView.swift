@@ -95,6 +95,7 @@ public class MZRView: NSView {
     
     public override func mouseDown(with event: NSEvent) {
         let point = convert(event.locationInWindow, from: nil)
+        window?.makeFirstResponder(nil)
         viewModel.began(point)
     }
     
