@@ -713,17 +713,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </customView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z56-Mm-SUu">
-                                <rect key="frame" x="8" y="200" width="187" height="62"/>
+                                <rect key="frame" x="8" y="200" width="299" height="62"/>
                                 <subviews>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Z4-gm-1xX">
-                                        <rect key="frame" x="0.0" y="41" width="158" height="21"/>
+                                        <rect key="frame" x="0.0" y="41" width="299" height="21"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uHw-0h-NcU">
-                                                <rect key="frame" x="-6" y="-7" width="87" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="75" id="Dhl-rz-Q8u"/>
-                                                </constraints>
-                                                <buttonCell key="cell" type="push" title="Select" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vig-rb-H6e">
+                                                <rect key="frame" x="-6" y="-7" width="135" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Selection Mode" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vig-rb-H6e">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
@@ -731,8 +728,18 @@
                                                     <action selector="normal:" target="XfG-lQ-9wD" id="I2E-zx-s91"/>
                                                 </connections>
                                             </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oRp-0Q-jUG">
+                                                <rect key="frame" x="125" y="-7" width="97" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Select All" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7N-Zc-HiE">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="selectAllItems:" target="XfG-lQ-9wD" id="tzW-Ff-5Cv"/>
+                                                </connections>
+                                            </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wQ9-If-pNj">
-                                                <rect key="frame" x="77" y="-7" width="87" height="32"/>
+                                                <rect key="frame" x="218" y="-7" width="87" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="75" id="hUf-o7-53V"/>
                                                 </constraints>
@@ -748,8 +755,10 @@
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -758,13 +767,10 @@
                                         <rect key="frame" x="0.0" y="30" width="96" height="5"/>
                                     </box>
                                     <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8sh-X2-wVg">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="24"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="173" height="24"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="40O-4i-JWW">
-                                                <rect key="frame" x="-6" y="-5" width="87" height="32"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="75" id="rQh-dE-hzl"/>
-                                                </constraints>
+                                                <rect key="frame" x="-6" y="-5" width="73" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Make" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hPG-Id-Hf2">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -774,7 +780,7 @@
                                                 </connections>
                                             </button>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FxE-Jd-rhL">
-                                                <rect key="frame" x="81" y="-1" width="77" height="25"/>
+                                                <rect key="frame" x="67" y="-1" width="77" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="YcZ-0f-Vmq" id="cHx-SO-TdS">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
@@ -788,7 +794,7 @@
                                                 </popUpButtonCell>
                                             </popUpButton>
                                             <slider horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mrd-ro-olR">
-                                                <rect key="frame" x="161" y="-3" width="28" height="30"/>
+                                                <rect key="frame" x="147" y="-3" width="28" height="30"/>
                                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="359" allowsTickMarkValuesOnly="YES" sliderType="circular" id="sR6-4v-fMI"/>
                                                 <connections>
                                                     <action selector="rotationSliderValueChanged:" target="XfG-lQ-9wD" id="6rU-bh-hQe"/>

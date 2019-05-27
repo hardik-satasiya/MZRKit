@@ -46,6 +46,10 @@ class ViewController: NSViewController {
         mzrView.normal()
     }
     
+    @IBAction func selectAllItems(_ sender: Any) {
+        mzrView.selectedItems = mzrView.items
+    }
+    
     @IBAction func delete(_ sender: Any) {
         mzrView.deleteSelectedItems()
     }
@@ -59,51 +63,6 @@ class ViewController: NSViewController {
         let degree = CGFloat(sender.doubleValue)
         let radian = MZRRadianFromDegree(degree)
         mzrView.rotateSelecteditems(radian)
-    }
-    
-}
-
-class MyView: NSView {
-    
-    var square = MZRAngle2()
-    
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-        square.addPoint(CGPoint(x: 100, y: 100))
-        square.addPoint(CGPoint(x: 200, y: 200))
-        square.addPoint(CGPoint(x: 200, y: 100))
-//        square.addPoint(CGPoint(x: 100, y: 200))
-//        square.rotation = -.pi / 4
-    }
-    
-    override func draw(_ dirtyRect: NSRect) {
-//        square.draw()
-//        square.drawPoints()
-        if let context = CGContext.current {
-            if let path = square.path() {
-                context.addPath(path)
-                context.strokePath()
-            }
-        }
-    }
-    
-    override func mouseDown(with event: NSEvent) {
-        var point = convert(event.locationInWindow, from: nil)
-        point.x -= 10
-        point.y += 10
-        square.modifyPoint(point, at: MZRItem.Position(0, 1))
-        needsDisplay = true
-    }
-    
-    override func mouseDragged(with event: NSEvent) {
-        var point = convert(event.locationInWindow, from: nil)
-        point.x -= 10
-        point.y += 10
-        square.modifyPoint(point, at: MZRItem.Position(0, 1))
-        needsDisplay = true
-    }
-    
-    override func mouseUp(with event: NSEvent) {
     }
     
 }
