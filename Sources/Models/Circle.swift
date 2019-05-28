@@ -22,6 +22,12 @@ public struct Circle {
         radius = circle.radius
     }
     
+    public func contains(_ location: CGPoint) -> Bool {
+        let dx = location.x - center.x
+        let dy = location.y - center.y
+        return dx * dx + dy * dy <= radius * radius
+    }
+    
     // MARK: - Selection
     
     public func canSelected(by rect: CGRect) -> Bool {
