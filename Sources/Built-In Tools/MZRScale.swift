@@ -76,7 +76,7 @@ class MZRScale {
     // MARK: - Internal Drawing
     
     private func drawCross(rect: CGRect, value: CGFloat, origin: Origin, division: Division) {
-        guard let context = CGContext.current else { return }
+        guard let context = CGContext.current, value > 0 else { return }
         
         context.saveGState()
         defer { context.restoreGState() }
