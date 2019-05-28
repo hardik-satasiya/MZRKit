@@ -41,6 +41,20 @@ class ViewController: NSViewController {
         
         itemListButton.removeAllItems()
         itemListButton.addItems(withTitles: MZRView.Item.allCases.map({ "\($0)" }))
+        updateRotationSlider()
+        
+        mzrView.delegate = self
+    }
+    
+    func updateRotationSlider() {
+        if let item = mzrView.selectedItems.first, mzrView.selectedItems.count == 1 {
+            let degree = MZRDegreeFromRadian(item.rotation)
+            rotationSlider.doubleValue = Double(degree)
+            rotationSlider.isEnabled = true
+        } else {
+            rotationSlider.doubleValue = 0
+            rotationSlider.isEnabled = false
+        }
     }
     
     @IBAction func normal(_ sender: Any) {
@@ -69,6 +83,26 @@ class ViewController: NSViewController {
         let degree = CGFloat(sender.doubleValue)
         let radian = MZRRadianFromDegree(degree)
         mzrView.rotateSelecteditems(radian)
+    }
+    
+}
+
+extension ViewController: MZRViewDelegate {
+    
+    func mzrView(_ mzrView: MZRView, didFinish item: MZRItem) {
+        
+    }
+    
+    func mzrView(_ mzrView: MZRView, didModified item: MZRItem) {
+        
+    }
+    
+    func mzrView(_ mzrView: MZRView, didSelect items: [MZRItem]) {
+        updateRotationSlider()
+    }
+    
+    func mzrView(_ mzrView: MZRView, didDeselect items: [MZRItem]) {
+        updateRotationSlider()
     }
     
 }
