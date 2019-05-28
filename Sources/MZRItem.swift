@@ -137,6 +137,7 @@ public class MZRItem {
         points[position.0][position.1] = point
     }
     
+    /// `offset(x:y:)` edit points directly and doesn't call `modifyPoint(_:at:)`.
     public func offset(x: CGFloat, y: CGFloat) {
         var newPoints = points
         
@@ -149,6 +150,7 @@ public class MZRItem {
         points = newPoints
     }
     
+    /// `offset(x:y:at:)` calls `modifyPoint()` to edit point at `position`.
     public func offset(x: CGFloat, y: CGFloat, at position: Position) {
         var newPoint = points[position.0][position.1]
         newPoint = CGPoint(x: newPoint.x + x, y: newPoint.y + y)
