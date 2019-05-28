@@ -30,6 +30,8 @@ class MZRViewModel {
     
     private var lastLocation: CGPoint?
     
+    private var rotator: MZRRotator?
+    
     // MARK: - Item
     
     var items = [MZRItem]() {
@@ -55,6 +57,12 @@ class MZRViewModel {
     
     var selectedItems = [MZRItem]() {
         didSet {
+            if let first = selectedItems.first, selectedItems.count == 1 {
+                rotator = MZRRotator(target: first)
+                rotator?.targetItem = first
+            } else {
+                rotator = nil
+            }
             shouldUpdate?()
         }
     }
@@ -105,9 +113,12 @@ class MZRViewModel {
     }
     
     /// Returns item and position of a non `inf` size selected item or nil if nothing is selected.
-    private func position(at location: CGPoint) -> (MZRItem, MZRItem.Position)? {
+    private func itemPosition(at location: CGPoint) -> (MZRItem, MZRItem.Position)? {
         guard let selectedItem = selectedItems.first, selectedItems.count == 1 else { return nil }
-        if case .inf(let continuous, _) = selectedItem.size, continuous {
+        if let rotator = rotator, rotator.contains(location) {
+            return (rotator, (0, 0))
+        }
+        else if case .inf(let continuous, _) = selectedItem.size, continuous {
             return nil
         }
         for (col, section) in selectedItem.points.enumerated() {
@@ -180,7 +191,7 @@ class MZRViewModel {
             mode = .drawing(item: item, pressed: true)
             
         case .select:
-            if let (item, position) = position(at: location) {
+            if let (item, position) = itemPosition(at: location) {
                 mode = .select(selectionMode: .onPoint(item: item, position: position))
             } else if let item = item(at: location) {
                 if !selectedItems.contains(item) {
@@ -228,6 +239,10 @@ class MZRViewModel {
                 for item in selectedItems {
                     item.offset(x: offset.x, y: offset.y)
                 }
+                // update rotato
+                if let rotator = rotator, let anchorPoint = rotator.targetItem?.anchorPoint() {
+                    rotator.forceModifyPoint(anchorPoint, at: (0, 0))
+                }
                 
             case .onPoint(item: let item, position: let position):
                 mode = .select(selectionMode: .draggingPoint(item: item, position: position))
@@ -235,9 +250,11 @@ class MZRViewModel {
                 return
                 
             case .draggingPoint(item: let item, position: let position):
-                guard let lastLocation = lastLocation else { break }
-                let offset = CGPoint(x: location.x - lastLocation.x, y: location.y - lastLocation.y)
-                item.offset(x: offset.x, y: offset.y, at: position)
+                item.modifyPoint(location, at: position)
+                // update rotato
+                if let rotator = rotator, let anchorPoint = rotator.targetItem?.anchorPoint() {
+                    rotator.forceModifyPoint(anchorPoint, at: (0, 0))
+                }
                 
             default:
                 let width = round(location.x - selectionRect.origin.x)
@@ -324,6 +341,8 @@ class MZRViewModel {
                 item.drawArch()
             }
         }
+        
+        rotator?.draw()
         
         if selectionRect != .null {
             context.setFillColor(selectionColors.background)
