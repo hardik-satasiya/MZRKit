@@ -59,6 +59,18 @@ class MZRViewModel {
         didSet {
             updateRotator()
             shouldUpdate?()
+            
+            let new = Set(selectedItems), old = Set(oldValue)
+            let addeds = new.subtracting(old)
+            let removeds = old.subtracting(new)
+            
+            if !addeds.isEmpty {
+                itemsSelected?(Array(addeds))
+            }
+            
+            if !removeds.isEmpty {
+                itemsDeselected?(Array(removeds))
+            }
         }
     }
     
@@ -141,6 +153,10 @@ class MZRViewModel {
     var itemFinished: ((MZRItem) -> Void)?
     
     var itemModified: ((MZRItem) -> Void)?
+    
+    var itemsSelected: (([MZRItem]) -> Void)?
+    
+    var itemsDeselected: (([MZRItem]) -> Void)?
     
     // MARK: - Life Cycle
     

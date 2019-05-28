@@ -7,6 +7,18 @@
 
 import Foundation
 
+public protocol MZRViewDelegate: AnyObject {
+    
+    func mzrView(_ mzrView: MZRView, didFinish item: MZRItem)
+    
+    func mzrView(_ mzrView: MZRView, didModified item: MZRItem)
+    
+    func mzrView(_ mzrView: MZRView, didSelect items: [MZRItem])
+    
+    func mzrView(_ mzrView: MZRView, didDeselect items: [MZRItem])
+    
+}
+
 extension MZRView {
     
     public enum Item: CaseIterable {
@@ -79,6 +91,8 @@ extension MZRView {
 
 public class MZRView: NSView {
     
+    public weak var delegate: MZRViewDelegate?
+    
     let viewModel = MZRViewModel()
     
     public init() {
@@ -114,6 +128,8 @@ public class MZRView: NSView {
 #else
 
 public class MZRView: UIView {
+    
+    public weak var delegate: MZRViewDelegate?
     
     let viewModel = MZRViewModel()
     
@@ -157,7 +173,7 @@ extension MZRView {
     
     // MARK: - Internal Methods
     
-    private func refresh() {
+    private func commonDisplay() {
         #if os(OSX)
         self.needsDisplay = true
         #else
@@ -167,7 +183,23 @@ extension MZRView {
     
     private func commonInit() {
         viewModel.shouldUpdate = { [unowned self] in
-            self.refresh()
+            self.commonDisplay()
+        }
+        
+        viewModel.itemFinished = { [unowned self] item in
+            self.delegate?.mzrView(self, didFinish: item)
+        }
+        
+        viewModel.itemModified = { [unowned self] item in
+            self.delegate?.mzrView(self, didModified: item)
+        }
+        
+        viewModel.itemsSelected = { [unowned self] items in
+            self.delegate?.mzrView(self, didSelect: items)
+        }
+        
+        viewModel.itemsDeselected = { [unowned self] items in
+            self.delegate?.mzrView(self, didDeselect: items)
         }
     }
     
@@ -215,7 +247,7 @@ extension MZRView {
             case .grid(let value):
                 viewModel.scale.scaleStyle = .grid(value)
             }
-            refresh()
+            commonDisplay()
         }
     }
     
