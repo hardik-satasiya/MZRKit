@@ -137,7 +137,7 @@ public class MZRItem {
         points[position.0][position.1] = point
     }
     
-    /// `offset(x:y:)` edit points directly and doesn't call `modifyPoint(_:at:)`.
+    /// `offset(x:y:)` edit points directly without calling `modifyPoint(_:at:)`.
     public func offset(x: CGFloat, y: CGFloat) {
         var newPoints = points
         
@@ -161,7 +161,7 @@ public class MZRItem {
     
     /// Move to the next column. `inf` size only.
     public func cut() {
-        guard case .inf = size else { return }
+        guard case .inf(continuous: _, canCut: let canCut) = size, canCut else { return }
         guard let last = points.last, !last.isEmpty else { return }
         points.append([])
     }

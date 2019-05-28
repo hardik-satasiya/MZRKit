@@ -57,12 +57,7 @@ class MZRViewModel {
     
     var selectedItems = [MZRItem]() {
         didSet {
-            if let first = selectedItems.first, selectedItems.count == 1 {
-                rotator = MZRRotator(target: first)
-                rotator?.targetItem = first
-            } else {
-                rotator = nil
-            }
+            updateRotator()
             shouldUpdate?()
         }
     }
@@ -70,6 +65,13 @@ class MZRViewModel {
     var scale = MZRScale()
     
     // MARK: - Settings
+    
+    var rotatorEnabled = true {
+        didSet {
+            updateRotator()
+            shouldUpdate?()
+        }
+    }
     
     var outlineWidth = CGFloat(10)
     
@@ -115,12 +117,13 @@ class MZRViewModel {
     /// Returns item and position of a non `inf` size selected item or nil if nothing is selected.
     private func itemPosition(at location: CGPoint) -> (MZRItem, MZRItem.Position)? {
         guard let selectedItem = selectedItems.first, selectedItems.count == 1 else { return nil }
+        
         if let rotator = rotator, rotator.contains(location) {
             return (rotator, (0, 0))
-        }
-        else if case .inf(let continuous, _) = selectedItem.size, continuous {
+        } else if case .inf(let continuous, _) = selectedItem.size, continuous {
             return nil
         }
+        
         for (col, section) in selectedItem.points.enumerated() {
             for (row, point) in section.enumerated() {
                 if Line(from: point, to: location).distance < pointOutline {
@@ -135,6 +138,10 @@ class MZRViewModel {
     
     var shouldUpdate: (() -> Void)?
     
+    var itemFinished: ((MZRItem) -> Void)?
+    
+    var itemModified: ((MZRItem) -> Void)?
+    
     // MARK: - Life Cycle
     
     init() {
@@ -145,7 +152,15 @@ class MZRViewModel {
         makeItem(type: MZRRect.self)
     }
     
-    // MARK: - Make Item
+    // MARK: - Item
+    
+    private func updateRotator() {
+        if let item = selectedItems.first, selectedItems.count == 1, rotatorEnabled {
+            rotator = MZRRotator(target: item)
+        } else {
+            rotator = nil
+        }
+    }
     
     func makeItem(type: MZRItem.Type) {
         normal()
@@ -157,6 +172,7 @@ class MZRViewModel {
         if case .drawing(let item, _) = mode {
             if item.isCompleted, item.points.flatMap({ $0 }).count > 1 {
                 items.append(item)
+                itemFinished?(item)
             }
         }
 
@@ -178,13 +194,13 @@ class MZRViewModel {
         switch mode {
         case .drawing(item: let item, pressed: _):
             switch item.size {
-            case .std(_, let row) :
-                guard item.points.isEmpty || item.points.last?.count == row else { break }
+            case .std(_, let row) where item.points.isEmpty || item.points.last?.count == row:
                 item.addPoint(location)
-            
-            case .inf(continuous: let continuous, canCut: _):
-                guard !continuous, item.points.isEmpty else { break }
+                
+            case .inf(continuous: let continuous, canCut: _) where !continuous && item.points.isEmpty:
                 item.addPoint(location)
+                
+            default: break
             }
             
             item.addPoint(location)
@@ -219,17 +235,18 @@ class MZRViewModel {
                 item.modifyPoint(location, at: (col, row))
                 
             case .inf(continuous: let continuous, canCut: _):
-                if continuous {
-                    item.addPoint(location)
-                } else {
-                    item.modifyPoint(location, at: (col, row))
-                }
+                continuous ? item.addPoint(location) : item.modifyPoint(location, at: (col, row))
             }
             
         case .select(selectionMode: let selectionMode):
             switch selectionMode {
             case .onItem:
                 mode = .select(selectionMode: .draggingItems)
+                moved(location)
+                return
+                
+            case .onPoint(item: let item, position: let position):
+                mode = .select(selectionMode: .draggingPoint(item: item, position: position))
                 moved(location)
                 return
                 
@@ -241,19 +258,18 @@ class MZRViewModel {
                 }
                 // update rotato
                 if let rotator = rotator, let anchorPoint = rotator.targetItem?.anchorPoint() {
-                    rotator.forceModifyPoint(anchorPoint, at: (0, 0))
+                    rotator.points[0][0] = anchorPoint
                 }
-                
-            case .onPoint(item: let item, position: let position):
-                mode = .select(selectionMode: .draggingPoint(item: item, position: position))
-                moved(location)
-                return
                 
             case .draggingPoint(item: let item, position: let position):
                 item.modifyPoint(location, at: position)
                 // update rotato
-                if let rotator = rotator, let anchorPoint = rotator.targetItem?.anchorPoint() {
-                    rotator.forceModifyPoint(anchorPoint, at: (0, 0))
+                if item != rotator {
+                    if let rotator = rotator, let anchorPoint = rotator.targetItem?.anchorPoint() {
+                        rotator.points[0][0] = anchorPoint
+                    }
+                    
+                    itemModified?(item)
                 }
                 
             default:
@@ -272,15 +288,16 @@ class MZRViewModel {
         switch mode {
         case .drawing(item: let item, pressed: _):
             switch item.size {
-            case .std:
-                guard item.isCompleted else { break }
+            case .std where item.isCompleted:
                 items.append(item)
                 mode = .select(selectionMode: .normal)
+                itemFinished?(item)
                 
-            case .inf(continuous: _, let canCut):
-                guard canCut else { break }
+            case .inf(continuous: _, let canCut) where canCut:
                 item.cut()
                 mode = .drawing(item: item, pressed: false)
+                
+            default: break
             }
             
         case .select(selectionMode: let selectionMode):

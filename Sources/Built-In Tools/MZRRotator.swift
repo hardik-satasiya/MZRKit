@@ -9,12 +9,7 @@ class MZRRotator: MZRItem {
     
     var radius = CGFloat(8)
     
-    weak var targetItem: MZRItem? {
-        didSet {
-            guard let item = targetItem, let anchorPoint = item.anchorPoint() else { return }
-            modifyPoint(anchorPoint, at: (0, 0))
-        }
-    }
+    weak var targetItem: MZRItem?
     
     // MARK: - Life Cycle
     
@@ -24,9 +19,14 @@ class MZRRotator: MZRItem {
     
     init(target: MZRItem) {
         super.init(.std(1, 1))
-        targetItem = target
         color = MZRMakeCGColor(r: 1, g: 0, b: 0, a: 1)
-        addPoint(.zero)
+        targetItem = target
+        
+        if let anchorPoint = target.anchorPoint() {
+            addPoint(anchorPoint)
+        } else {
+            addPoint(.zero)
+        }
     }
     
     // MARK: - Edit
@@ -59,10 +59,6 @@ class MZRRotator: MZRItem {
             targetItem.rotationAnchor = .point(point)
             super.modifyPoint(point, at: position)
         }
-    }
-    
-    func forceModifyPoint(_ point: CGPoint, at position: MZRItem.Position) {
-        points[position.0][position.1] = point
     }
     
     // MARK: - Drawing
