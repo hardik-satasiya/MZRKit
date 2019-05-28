@@ -34,7 +34,7 @@ public struct Line {
     public var distance: CGFloat {
         let dx = to.x - from.x
         let dy = to.y - from.y
-        return sqrt(pow(dx, 2) + pow(dy, 2))
+        return sqrt(dx * dx + dy * dy)
     }
     
     public var midpoint: CGPoint {
@@ -57,7 +57,7 @@ public struct Line {
         let dx = to.x - from.x
         let dy = to.y - from.y
         let A = abs(dy * point.x - dx * point.y + to.x * from.y - to.y * from.x)
-        let B = sqrt(pow(to.y - from.y, 2) + pow(to.x - from.x, 2))
+        let B = sqrt(dx * dx + dy * dy)
         return A / B
     }
     
