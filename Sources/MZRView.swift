@@ -57,30 +57,33 @@ extension MZRView {
         }
     }
     
-    // MARK: - Scale Options
-    
-    public enum Origin: Int {
-        case center
-        #if os(OSX)
-        case leftTop
-        case rightTop
-        case leftBottom
-        case rightBottom
-        #else
-        case leftBottom
-        case rightBottom
-        case leftTop
-        case rightTop
-        #endif
-    }
-    
-    public enum Division: Int {
-        case by10
-        case by5
-        case by1
-    }
+    // MARK: - ScaleStyle
     
     public enum ScaleStyle {
+        public enum Origin: Int {
+            case center, leftTop, leftBottom, rightTop, rightBottom
+            
+            var internalOrigin: MZRScale.Origin {
+                return MZRScale.Origin(rawValue: rawValue)!
+            }
+            
+            init(internalOrigin origin: MZRScale.Origin) {
+                self = Origin(rawValue: origin.rawValue)!
+            }
+        }
+        
+        public enum Division: Int {
+            case by10, by5, by1
+            
+            var internalDivision: MZRScale.Division {
+                return MZRScale.Division(rawValue: rawValue)!
+            }
+            
+            init(internalDivision division: MZRScale.Division) {
+                self = Division(rawValue: division.rawValue)!
+            }
+        }
+        
         case cross(CGFloat, Origin, Division)
         case grid(Int)
     }
@@ -230,20 +233,17 @@ extension MZRView {
     public var scaleStyle: ScaleStyle {
         get {
             switch viewModel.scale.scaleStyle {
-            case .cross(let value, let origin, let div):
-                return .cross(value, Origin(rawValue: origin.rawValue)!, Division(rawValue: div.rawValue)!)
+            case .cross(let val, let origin, let div):
+                return .cross(val, .init(internalOrigin: origin), .init(internalDivision: div))
                 
-            case .grid(let value):
-                return .grid(value)
+            case .grid(let val):
+                return .grid(val)
             }
         }
         set {
             switch newValue {
             case .cross(let value, let origin, let div):
-                viewModel.scale.scaleStyle = .cross(value,
-                                                    MZRScale.Origin(rawValue: origin.rawValue)!,
-                                                    MZRScale.Division(rawValue: div.rawValue)!)
-                
+                viewModel.scale.scaleStyle = .cross(value, origin.internalOrigin, div.internalDivision)
             case .grid(let value):
                 viewModel.scale.scaleStyle = .grid(value)
             }

@@ -11,26 +11,29 @@ extension MZRScale {
     
     public enum Origin: Int {
         case center
-        #if os(OSX)
         case leftTop
-        case rightTop
         case leftBottom
-        case rightBottom
-        #else
-        case leftBottom
-        case rightBottom
-        case leftTop
         case rightTop
-        #endif
+        case rightBottom
         
         func location(_ field: CGRect) -> CGPoint {
-            switch self.rawValue {
-            case 0:  return .init(x: field.midX, y: field.midY)
-            case 1:  return .init(x: 0, y: field.maxY)
-            case 2:  return .init(x: field.maxX, y: field.maxY)
-            case 3:  return .init(x: 0, y: 0)
-            default: return .init(x: field.maxX, y: 0)
+            #if os(OSX)
+            switch self {
+            case .center:      return .init(x: field.midX, y: field.midY)
+            case .leftTop:     return .init(x: field.minX, y: field.maxY)
+            case .leftBottom:  return .init(x: field.minX, y: field.minY)
+            case .rightTop:    return .init(x: field.maxX, y: field.maxY)
+            case .rightBottom: return .init(x: field.maxX, y: field.minY)
             }
+            #else
+            switch self {
+            case .center:      return .init(x: field.midX, y: field.midY)
+            case .leftTop:     return .init(x: field.minX, y: field.minY)
+            case .leftBottom:  return .init(x: field.minX, y: field.maxY)
+            case .rightTop:    return .init(x: field.maxX, y: field.minY)
+            case .rightBottom: return .init(x: field.maxX, y: field.maxY)
+            }
+            #endif
         }
     }
     
@@ -102,10 +105,8 @@ class MZRScale {
             }
         }
         
-        if origin == .center {
-            Line(from: CGPoint(x: pOrigin.x, y: 0), to: CGPoint(x: pOrigin.x, y: rect.maxY)).stroke()
-            Line(from: CGPoint(x: 0, y: pOrigin.y), to: CGPoint(x: rect.maxX, y: pOrigin.y)).stroke()
-        }
+        Line(from: CGPoint(x: pOrigin.x, y: 0), to: CGPoint(x: pOrigin.x, y: rect.maxY)).stroke()
+        Line(from: CGPoint(x: 0, y: pOrigin.y), to: CGPoint(x: rect.maxX, y: pOrigin.y)).stroke()
     }
     
     private func drawGrid(rect: CGRect, value: Int) {
