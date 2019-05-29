@@ -706,17 +706,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MZRKitDemo_macOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="496" height="287"/>
+                        <rect key="frame" x="0.0" y="0.0" width="542" height="287"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xA6-46-Sdb">
-                                <rect key="frame" x="8" y="8" width="480" height="271"/>
+                                <rect key="frame" x="8" y="8" width="526" height="271"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z56-Mm-SUu">
-                                        <rect key="frame" x="0.0" y="208" width="414" height="63"/>
+                                        <rect key="frame" x="0.0" y="208" width="526" height="63"/>
                                         <subviews>
                                             <stackView distribution="fillEqually" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Z4-gm-1xX">
-                                                <rect key="frame" x="0.0" y="41" width="414" height="22"/>
+                                                <rect key="frame" x="0.0" y="41" width="526" height="22"/>
                                                 <subviews>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uHw-0h-NcU">
                                                         <rect key="frame" x="-6" y="-6" width="135" height="32"/>
@@ -729,7 +729,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oRp-0Q-jUG">
-                                                        <rect key="frame" x="125" y="-6" width="108" height="32"/>
+                                                        <rect key="frame" x="125" y="-6" width="97" height="32"/>
                                                         <buttonCell key="cell" type="push" title="Select All" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7N-Zc-HiE">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -739,7 +739,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wQ9-If-pNj">
-                                                        <rect key="frame" x="229" y="-6" width="87" height="32"/>
+                                                        <rect key="frame" x="218" y="-6" width="87" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="75" id="hUf-o7-53V"/>
                                                         </constraints>
@@ -752,7 +752,7 @@
                                                         </connections>
                                                     </button>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mN2-nk-ggi">
-                                                        <rect key="frame" x="318" y="0.0" width="96" height="22"/>
+                                                        <rect key="frame" x="307" y="0.0" width="96" height="22"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="DBO-Nr-A6e">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -762,14 +762,35 @@
                                                             <action selector="scaleTextFieldValueChanged:" target="XfG-lQ-9wD" id="pIu-FH-EUY"/>
                                                         </connections>
                                                     </textField>
+                                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tsk-0V-ChB">
+                                                        <rect key="frame" x="409" y="-2" width="120" height="25"/>
+                                                        <popUpButtonCell key="cell" type="push" title="Center" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1iJ-FC-Jch" id="mFq-C6-Oxx">
+                                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="menu"/>
+                                                            <menu key="menu" id="Z2G-wi-TKi">
+                                                                <items>
+                                                                    <menuItem title="Center" state="on" id="1iJ-FC-Jch"/>
+                                                                    <menuItem title="Left-Top" id="uwX-vR-9aY"/>
+                                                                    <menuItem title="Left-Bottom" id="6Q2-c2-QbJ"/>
+                                                                    <menuItem title="Right-Top" id="FHQ-Ak-EWH"/>
+                                                                    <menuItem title="Right-Bottom" id="tS5-jF-4gS"/>
+                                                                </items>
+                                                            </menu>
+                                                        </popUpButtonCell>
+                                                        <connections>
+                                                            <action selector="scaleOriginChanged:" target="XfG-lQ-9wD" id="zgh-pq-O5I"/>
+                                                        </connections>
+                                                    </popUpButton>
                                                 </subviews>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
+                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>

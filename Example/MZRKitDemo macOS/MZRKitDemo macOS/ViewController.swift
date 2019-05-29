@@ -44,11 +44,12 @@ class ViewController: NSViewController {
         updateRotationSlider()
         
         mzrView.delegate = self
+        mzrView.scaleStyle = .cross(10, .center, .by10)
     }
     
     func updateRotationSlider() {
         if let item = mzrView.selectedItems.first, mzrView.selectedItems.count == 1 {
-            let degree = MZRDegreeFromRadian(item.rotation)
+            let degree = 360 - MZRDegreeFromRadian(item.rotation)
             rotationSlider.doubleValue = Double(degree)
             rotationSlider.isEnabled = true
         } else {
@@ -71,7 +72,23 @@ class ViewController: NSViewController {
     
     @IBAction func scaleTextFieldValueChanged(_ sender: NSTextField) {
         guard let doubleValue = Double(sender.stringValue) else { return }
-        mzrView.scaleStyle = .cross(CGFloat(doubleValue), .center, .by10)
+        
+        switch mzrView.scaleStyle {
+        case .cross(_, let origin, let div):
+            mzrView.scaleStyle = .cross(CGFloat(doubleValue), origin, div)
+        default:
+            break
+        }
+    }
+    
+    @IBAction func scaleOriginChanged(_ sender: NSPopUpButton) {
+        switch mzrView.scaleStyle {
+        case .cross(let val, _, let div):
+            let origin = MZRView.ScaleStyle.Origin(rawValue: sender.indexOfSelectedItem)!
+            mzrView.scaleStyle = .cross(val, origin, div)
+        default:
+            break
+        }
     }
     
     @IBAction func makeItem(_ sender: Any) {
@@ -81,7 +98,7 @@ class ViewController: NSViewController {
     @IBAction func rotationSliderValueChanged(_ sender: NSSlider) {
         guard mzrView.selectedItems.count == 1 else { return }
         let degree = CGFloat(sender.doubleValue)
-        let radian = MZRRadianFromDegree(degree)
+        let radian = MZRRadianFromDegree(360 - degree)
         mzrView.rotateSelecteditems(radian)
     }
     
