@@ -2,7 +2,7 @@
 //  MZRScale.swift
 //  MZRKit
 //
-//  Created by 陳世爵 on 2019/5/27.
+//  Created by scchnxx on 2019/5/27.
 //
 
 import Foundation

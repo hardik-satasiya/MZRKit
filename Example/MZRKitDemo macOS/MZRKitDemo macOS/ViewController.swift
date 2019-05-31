@@ -99,7 +99,7 @@ class ViewController: NSViewController {
         guard mzrView.selectedItems.count == 1 else { return }
         let degree = CGFloat(sender.doubleValue)
         let radian = MZRRadianFromDegree(360 - degree)
-        mzrView.rotateSelecteditems(radian)
+        mzrView.rotateSelectedItems(radian)
     }
     
 }

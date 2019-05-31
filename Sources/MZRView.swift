@@ -264,7 +264,7 @@ extension MZRView {
         viewModel.items = newItems
     }
     
-    public func rotateSelecteditems(_ radian: CGFloat) {
+    public func rotateSelectedItems(_ radian: CGFloat) {
         viewModel.rotate(radian)
     }
     
