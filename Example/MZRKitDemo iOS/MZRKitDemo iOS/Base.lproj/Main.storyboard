@@ -13,28 +13,112 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MZRKitDemo_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLY-sr-3H3" customClass="MyView" customModule="iOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNe-fx-B09" customClass="MZRView" customModule="MZRKit">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PWT-mZ-kTa">
+                                <rect key="frame" x="8" y="52" width="398" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAp-JJ-dtD">
+                                        <rect key="frame" x="0.0" y="0.0" width="127.5" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Selection Mode">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="normal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eu6-vH-d5X"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfi-ei-5A5">
+                                        <rect key="frame" x="135.5" y="0.0" width="127" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Item Picker">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="switchPicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AYv-Bc-L44"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n30-tz-2zF">
+                                        <rect key="frame" x="270.5" y="0.0" width="127.5" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteItem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wzb-zr-5IQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyR-I3-vSE">
+                                <rect key="frame" x="0.0" y="487" width="414" height="409"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-N2-6CX">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="409"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="1au-gY-U73"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="eiO-6c-K0b"/>
+                                        </connections>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9D-4v-hcb">
+                                        <rect key="frame" x="336" y="8" width="70" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="5bv-dh-rAE"/>
+                                            <constraint firstAttribute="height" constant="36" id="BkA-E1-fr5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="makeItem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6HQ-wm-BBe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstItem="bQI-N2-6CX" firstAttribute="leading" secondItem="WyR-I3-vSE" secondAttribute="leading" id="Ax6-7w-GoK"/>
+                                    <constraint firstAttribute="bottom" secondItem="bQI-N2-6CX" secondAttribute="bottom" id="CIE-hl-Es5"/>
+                                    <constraint firstItem="bQI-N2-6CX" firstAttribute="top" secondItem="WyR-I3-vSE" secondAttribute="top" id="P1Z-CJ-KlH"/>
+                                    <constraint firstAttribute="trailing" secondItem="bQI-N2-6CX" secondAttribute="trailing" id="P9e-af-IHA"/>
+                                    <constraint firstItem="n9D-4v-hcb" firstAttribute="top" secondItem="WyR-I3-vSE" secondAttribute="top" constant="8" id="oF9-mY-51f"/>
+                                    <constraint firstAttribute="trailing" secondItem="n9D-4v-hcb" secondAttribute="trailing" constant="8" id="sIJ-D0-y2e"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="SLY-sr-3H3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AFJ-NG-AbT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="SLY-sr-3H3" secondAttribute="bottom" id="EWs-pz-dP7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SLY-sr-3H3" secondAttribute="trailing" id="LrT-qJ-ABq"/>
-                            <constraint firstItem="SLY-sr-3H3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gqc-FN-VXn"/>
+                            <constraint firstItem="PWT-mZ-kTa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="2gk-iD-7wx"/>
+                            <constraint firstItem="WyR-I3-vSE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4eV-Z1-dEd"/>
+                            <constraint firstItem="wNe-fx-B09" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="DLm-h9-8Bt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PWT-mZ-kTa" secondAttribute="trailing" constant="8" id="GEF-kP-tfW"/>
+                            <constraint firstItem="wNe-fx-B09" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NuG-0n-6tw"/>
+                            <constraint firstAttribute="bottom" secondItem="WyR-I3-vSE" secondAttribute="bottom" id="gHO-CU-AlX"/>
+                            <constraint firstItem="wNe-fx-B09" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hHB-VO-hYU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wNe-fx-B09" secondAttribute="bottom" id="ich-zC-GYN"/>
+                            <constraint firstItem="PWT-mZ-kTa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="kvR-AQ-3Cp"/>
+                            <constraint firstItem="WyR-I3-vSE" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" id="o2m-1N-LCX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WyR-I3-vSE" secondAttribute="trailing" id="qqc-Of-NZL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="mzrView" destination="wNe-fx-B09" id="TsQ-8t-wCf"/>
+                        <outlet property="pickerContainerView" destination="WyR-I3-vSE" id="fZd-x0-cak"/>
+                        <outlet property="pickerContainerViewBottom" destination="gHO-CU-AlX" id="Egy-JH-HNz"/>
+                        <outlet property="pickerView" destination="bQI-N2-6CX" id="x7K-0c-qdN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-49.275362318840585" y="107.8125"/>
         </scene>
     </scenes>
 </document>

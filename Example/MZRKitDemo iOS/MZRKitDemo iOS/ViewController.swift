@@ -11,27 +11,71 @@ import MZRKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var mzrView: MZRView!
+    
+    @IBOutlet weak var pickerContainerView: UIView!
+    
+    @IBOutlet weak var pickerContainerViewBottom: NSLayoutConstraint!
+    
+    @IBOutlet weak var pickerView: UIPickerView!
+    
+    var pickerHidden: Bool {
+        get {
+            return pickerContainerViewBottom.constant != 0
+        }
+        set {
+            pickerContainerViewBottom.constant = !newValue ? 0 : -view.bounds.height / 2
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        mzrView.makeItem(.textField)
+        pickerHidden = true
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @IBAction func normal(_ sender: Any) {
+        mzrView.normal()
+    }
+    
+    @IBAction func switchPicker(_ sender: Any) {
+        UIView.animate(withDuration: 0.33) {
+            self.pickerHidden.toggle()
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func makeItem(_ sender: Any) {
+        let itemType = MZRView.Item.allCases[pickerView.selectedRow(inComponent: 0)]
+        mzrView.makeItem(itemType)
+        switchPicker(self)
+    }
+    
+    @IBAction func deleteItem(_ sender: Any) {
+        mzrView.deleteSelectedItems()
+    }
+    
 }
 
-class MyView: UIView {
+extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    override func draw(_ dirtyRect: CGRect) {
-        let context = CGContext.current!
-        let center = CGPoint(x: 100, y: 100)
-        let point1 = CGPoint(x: 150, y: 150)
-        let point2 = CGPoint(x: 150, y: 5)
-        let arc = Arc(center: center, radius: 50, point1: point1, point2: point2)
-        
-        context.addLines(between: [point1, center, point2])
-        context.strokePath()
-        context.addArc(center: arc.center, radius: arc.radius,
-                       startAngle: arc.startAngle, endAngle: arc.endAngle,
-                       clockwise: arc.clockwise)
-        context.strokePath()
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return MZRView.Item.allCases.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int,
+                    forComponent component: Int) -> NSAttributedString?
+    {
+        return NSAttributedString(string: "\(MZRView.Item.allCases[row])",
+                                  attributes: [.foregroundColor : UIColor.white])
     }
     
 }

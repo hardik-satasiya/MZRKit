@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:macOS/macOS.xcodeproj">
+      location = "group:MZRKitDemo iOS/MZRKitDemo iOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:iOS/iOS.xcodeproj">
+      location = "group:MZRKitDemo macOS/MZRKitDemo macOS.xcodeproj">
    </FileRef>
 </Workspace>
