@@ -2,12 +2,7 @@
 
 Measuring objects on macOS/iOS with just a few lines of code.(WIP)
 
-## Usage
-
-Place MZRView on your preview view.
-
 <img src="https://github.com/scchnxx/MZRKit/blob/master/etc/Showcase.png" width="70%"/>
-
 
 ## Drawing
 
@@ -80,6 +75,16 @@ Grid:
 mzrView.scaleStyle = .grid(10)
 ```
 
-|Drawing Items|Scale|Rotation|
+## Demo
+
+### macOS
+
+|Drawing|Scale|Rotation|
 |-|-|-|
 |![Item](https://github.com/scchnxx/MZRKit/blob/master/etc/Item.gif)|![Scale](https://github.com/scchnxx/MZRKit/blob/master/etc/Scale.gif)|![Rotation](https://github.com/scchnxx/MZRKit/blob/master/etc/Rotation.gif)|
+
+### iOS
+
+|Drawing|
+|-|
+|<img src="https://github.com/scchnxx/MZRKit/blob/master/etc/Item%20iOS.gif" width="250"/>|
