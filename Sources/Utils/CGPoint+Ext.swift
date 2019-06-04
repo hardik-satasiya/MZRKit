@@ -12,6 +12,15 @@ extension CGPoint: Hashable {
         hasher.combine(y)
     }
     
+    func rotated(center: CGPoint, angle: CGFloat) -> CGPoint {
+        let transform = CGAffineTransform.identity.translatedBy(x: center.x, y: center.y).rotated(by: angle)
+        return CGPoint(x: x - center.x, y: y - center.y).applying(transform)
+    }
+    
+    mutating func rotate(center: CGPoint, angle: CGFloat) {
+        self = rotated(center: center, angle: angle)
+    }
+    
 }
 
 extension CGPoint {
@@ -38,7 +47,7 @@ extension Array where Element == CGPoint {
     }
     
     mutating func rotate(center: CGPoint, angle: CGFloat) {
-        self = self.rotated(center: center, angle: angle)
+        self = rotated(center: center, angle: angle)
     }
     
 }
