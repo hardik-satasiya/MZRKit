@@ -167,10 +167,11 @@ public class MZRRect: MZRItem, RectangleMeasurable {
     // MARK: - Path
     
     public override func path() -> CGPath? {
-        guard let points = points.first, isCompleted else { return nil }
+        guard isCompleted else { return nil }
         let path = CGMutablePath()
-        path.addLines(between: points)
-        path.addLine(to: points[0])
+        let cornerIndexes = [0, 2, 7, 5]
+        path.addLines(between: cornerIndexes.map({ points[0][$0] }))
+        path.closeSubpath()
         return path
     }
     
