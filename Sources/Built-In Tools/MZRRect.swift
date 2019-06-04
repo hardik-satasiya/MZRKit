@@ -7,10 +7,11 @@
 
 /*
  
- 0-------1
+ 0---1---2
  |       |
+ 6       3
  |       |
- 3-------2
+ 5---4---7
 
  */
 
@@ -51,13 +52,13 @@ public class MZRRect: MZRItem, RectangleMeasurable {
     // MARK: - Life Cycle
     
     public required init() {
-        super.init(.std(1, 4))
+        super.init(.std(1, 8))
     }
     
     // MARK: - Edit
     
     private func updateFlip(unrotatedPoints: [CGPoint]) {
-        guard unrotatedPoints.count == 4 else { return }
+        guard unrotatedPoints.count == 8 else { return }
         
         if points[0][1].x - points[0][0].x < 0 {
             flip.update(with: .horizontal)
@@ -78,13 +79,16 @@ public class MZRRect: MZRItem, RectangleMeasurable {
         if points.first == nil {
             super.addPoint(point)
         } else {
-            let maxX = max(points[0][0].x, point.x)
-            let minX = min(points[0][0].x, point.x)
-            let maxY = max(points[0][0].y, point.y)
-            let minY = min(points[0][0].y, point.y)
-            super.addPoint(CGPoint(x: maxX, y: minY))
-            super.addPoint(CGPoint(x: maxX, y: maxY))
-            super.addPoint(CGPoint(x: minX, y: maxY))
+            let rect = CGRect(x: points[0][0].x, y: points[0][0].y,
+                              width: point.x - points[0][0].x, height: point.y - points[0][0].y)
+            
+            super.addPoint(CGPoint(x: rect.midX, y: rect.maxY))
+            super.addPoint(CGPoint(x: rect.maxX, y: rect.maxY))
+            super.addPoint(CGPoint(x: rect.maxX, y: rect.midY))
+            super.addPoint(CGPoint(x: rect.midX, y: rect.minY))
+            super.addPoint(CGPoint(x: rect.minX, y: rect.minY))
+            super.addPoint(CGPoint(x: rect.minX, y: rect.midY))
+            super.addPoint(CGPoint(x: rect.maxX, y: rect.minY))
             updateFlip(unrotatedPoints: points[0])
         }
     }
@@ -96,11 +100,49 @@ public class MZRRect: MZRItem, RectangleMeasurable {
         var newPoints = points[0].enumerated().map({ $0 != index ? $1 : point }).rotated(center: anchorPoint, angle: -rotation)
         
         switch index {
-        case 0:  newPoints[1].y = newPoints[index].y; newPoints[3].x = newPoints[index].x
-        case 1:  newPoints[0].y = newPoints[index].y; newPoints[2].x = newPoints[index].x
-        case 2:  newPoints[1].x = newPoints[index].x; newPoints[3].y = newPoints[index].y
-        default: newPoints[0].x = newPoints[index].x; newPoints[2].y = newPoints[index].y
+        case 0:
+            newPoints[2].y = newPoints[index].y
+            newPoints[5].x = newPoints[index].x
+            
+        case 2:
+            newPoints[0].y = newPoints[index].y
+            newPoints[7].x = newPoints[index].x
+            
+        case 7:
+            newPoints[2].x = newPoints[index].x
+            newPoints[5].y = newPoints[index].y
+            
+        case 5:
+            newPoints[0].x = newPoints[index].x
+            newPoints[7].y = newPoints[index].y
+            
+        case 1:
+            let point = point.rotated(center: anchorPoint, angle: -rotation)
+            newPoints[0].y = point.y
+            newPoints[2].y = point.y
+            
+        case 3:
+            let point = point.rotated(center: anchorPoint, angle: -rotation)
+            newPoints[2].x = point.x
+            newPoints[7].x = point.x
+            
+        case 4:
+            let point = point.rotated(center: anchorPoint, angle: -rotation)
+            newPoints[5].y = point.y
+            newPoints[7].y = point.y
+            
+        case 6:
+            let point = point.rotated(center: anchorPoint, angle: -rotation)
+            newPoints[0].x = point.x
+            newPoints[5].x = point.x
+            
+        default: return
         }
+        
+        newPoints[1] = CGPoint(x: (newPoints[0].x + newPoints[2].x) / 2, y: newPoints[0].y)
+        newPoints[4] = CGPoint(x: (newPoints[5].x + newPoints[7].x) / 2, y: newPoints[5].y)
+        newPoints[3] = CGPoint(x: newPoints[2].x, y: (newPoints[2].y + newPoints[7].y) / 2)
+        newPoints[6] = CGPoint(x: newPoints[0].x, y: (newPoints[0].y + newPoints[5].y) / 2)
         
         updateFlip(unrotatedPoints: newPoints)
         points[0] = newPoints.rotated(center: anchorPoint, angle: rotation)
@@ -115,8 +157,10 @@ public class MZRRect: MZRItem, RectangleMeasurable {
         defer {
             context.restoreGState()
         }
-        context.addLines(between: points[0])
-        context.addLine(to: points[0][0])
+        
+        let cornerIndexes = [0, 2, 7, 5]
+        context.addLines(between: cornerIndexes.map({ points[0][$0] }))
+        context.closePath()
         context.strokePath()
     }
     
