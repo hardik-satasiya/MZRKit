@@ -21,7 +21,7 @@ public protocol MZRViewDelegate: AnyObject {
 
 extension MZRView {
     
-    public enum Item: CaseIterable {
+    public enum Item: Int, CaseIterable {
         // Ruler
         case line
         case polyline
@@ -207,7 +207,7 @@ extension MZRView {
     }
     
     public override func draw(_ dirtyRect: CGRect) {
-        viewModel.draw(dirtyRect)
+        viewModel.draw(bounds)
     }
     
     // MARK: - Interface

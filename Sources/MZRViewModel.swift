@@ -161,11 +161,6 @@ class MZRViewModel {
     // MARK: - Life Cycle
     
     init() {
-        test()
-    }
-    
-    func test() {
-        makeItem(type: MZRRect.self)
     }
     
     // MARK: - Item
