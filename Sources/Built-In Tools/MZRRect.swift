@@ -41,12 +41,12 @@ public class MZRRect: MZRItem, RectangleMeasurable {
     
     public var width: CGFloat {
         guard isCompleted else { return 0 }
-        return Line(from: points[0][0], to: points[0][1]).distance
+        return Line(from: points[0][0], to: points[0][2]).distance
     }
     
     public var height: CGFloat {
         guard isCompleted else { return 0 }
-        return Line(from: points[0][0], to: points[0][3]).distance
+        return Line(from: points[0][0], to: points[0][5]).distance
     }
     
     // MARK: - Life Cycle
@@ -60,13 +60,13 @@ public class MZRRect: MZRItem, RectangleMeasurable {
     private func updateFlip(unrotatedPoints: [CGPoint]) {
         guard unrotatedPoints.count == 8 else { return }
         
-        if points[0][1].x - points[0][0].x < 0 {
+        if points[0][2].x - points[0][0].x < 0 {
             flip.update(with: .horizontal)
         } else {
             flip.remove(.horizontal)
         }
         
-        if points[0][0].y - points[0][3].y < 0 {
+        if points[0][0].y - points[0][5].y < 0 {
             flip.update(with: .vertical)
         } else {
             flip.remove(.vertical)
