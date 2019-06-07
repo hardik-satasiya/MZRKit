@@ -2,7 +2,7 @@
 
 Measuring objects on macOS/iOS with just a few lines of code.(WIP)
 
-<img src="https://github.com/scchnxx/MZRKit/blob/master/etc/Example.png" width="70%"/>
+<img src="https://github.com/scchnxx/MZRKit/blob/master/etc/Example.png" />
 
 
 ## Drawing
