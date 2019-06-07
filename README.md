@@ -2,7 +2,8 @@
 
 Measuring objects on macOS/iOS with just a few lines of code.(WIP)
 
-<img src="https://github.com/scchnxx/MZRKit/blob/master/etc/Showcase.png" width="70%"/>
+<img src="https://github.com/scchnxx/MZRKit/blob/master/etc/Example.png" />
+
 
 ## Drawing
 
@@ -24,31 +25,7 @@ mzrView.makeItem(.rect)
 |AngleMeasurable1    |angle                  |
 |AngleMeasurable2    |acuteAngle, obtuseAngle|
 
-You can use switch-case-let to extract the info of a MZRItem.
-
-```swift
-let item = mzrView.items[0]
-        
-switch item {
-case let item as DistanceMeasurable:
-    print(item.distances)
-    
-case let item as RectangleMeasurable:
-    print(item.width, item.height)
-    
-case let item as CircleMeasurable:
-    print(item.center, item.radius)
-    
-case let item as AngleMeasurable1:
-    print(item.angle)
-    
-case let item as AngleMeasurable2:
-    print(item.acuteAngle, item.obtuseAngle)
-    
-default:
-    break
-}
-```
+Coverse items to `Measurable` protocols above to extract measurement info.
 
 ## Rotation
 
