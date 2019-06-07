@@ -175,4 +175,14 @@ public class MZRRect: MZRItem, RectangleMeasurable {
         return path
     }
     
+    public override func canSelected(by rect: CGRect) -> Bool {
+        let cornerIndexes = [0, 2, 7, 5]
+        let corners = cornerIndexes.map { points[0][$0] }
+        for (i, point) in corners.enumerated() {
+            let p1 = point, p2 = corners[(i + 1) % corners.count]
+            if Line(from: p1, to: p2).canSelected(by: rect) { return true }
+        }
+        return false
+    }
+    
 }
