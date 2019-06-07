@@ -25,7 +25,7 @@ mzrView.makeItem(.rect)
 |AngleMeasurable1    |angle                  |
 |AngleMeasurable2    |acuteAngle, obtuseAngle|
 
-Coverse items to `Measurable` protocols above to extract measurement info.
+Converse items to `Measurable` protocols above to extract measurement info.
 
 ## Rotation
 
