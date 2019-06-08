@@ -230,6 +230,15 @@ extension MZRView {
         }
     }
     
+    public var rotatorEnabled: Bool {
+        get {
+            return viewModel.rotatorEnabled
+        }
+        set {
+            viewModel.rotatorEnabled = newValue
+        }
+    }
+    
     #if os(OSX)
     /// Set this value will also update the colors of selected items.
     public var drawingColor: NSColor {
@@ -340,7 +349,7 @@ extension MZRView {
         viewModel.items = newItems
     }
     
-    public func rotateSelectedItems(_ radian: CGFloat) {
+    public func rotate(_ radian: CGFloat) {
         viewModel.rotate(radian)
     }
     

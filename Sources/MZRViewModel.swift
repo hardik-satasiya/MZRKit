@@ -205,11 +205,10 @@ class MZRViewModel {
         mode = .select(selectionMode: .normal)
     }
     
-    /// Rotate selected items with `radian`
-    func rotate(_ radian: CGFloat) {
-        for item in selectedItems {
-            item.rotation = radian
-        }
+    /// Rotate single selection,
+    func rotate(_ rotation: CGFloat) {
+        guard let item = selectedItems.first, selectedItems.count == 1 else { return }
+        item.rotation = rotation
         shouldUpdate?()
     }
     
