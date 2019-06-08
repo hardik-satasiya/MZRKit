@@ -338,13 +338,35 @@ class MZRViewModel {
     
     // MARK: - Drawing
     
-    private func drawOutlineIfNeeded(item: MZRItem) {
-        guard let context = CGContext.current else { return }
+    private func drawAuxiliaryLine(_ item: MZRItem, at position: MZRItem.Position, in ctx: CGContext) {
+        guard item.isCompleted else { return }
+        if case .inf(let continuous, _) = item.size, continuous { return }
+        let p1 = item.points[position.0][position.1]
+        let p2 = position.1 > 0 ? item.points[position.0][position.1 - 1] :
+            (item.points[position.0].count > 1 ? item.points[position.0][position.1 + 1] : nil)
+        
+        if let p2 = p2 {
+            let line = Line(from: p1, to: p2)
+            let paralles = line.paralles(line.distance / 2)
+            ctx.saveGState()
+            ctx.addLine(line)
+            ctx.addLine(paralles.0)
+            ctx.addLine(paralles.1)
+            ctx.setStrokeColor(item.color)
+            ctx.strokePath()
+            ctx.restoreGState()
+        }
+    }
+    
+    private func drawOutlineIfNeeded(item: MZRItem, in ctx: CGContext) {
         guard case .select(let selectionMode) = mode, selectedItems.contains(item) else { return }
         
         switch selectionMode {
-        case .draggingItems, .draggingPoint:
+        case .draggingItems:
             break
+            
+        case .draggingPoint(let item, let position) where !(item is MZRRect):
+            drawAuxiliaryLine(item, at: position, in: ctx)
             
         case .onPoint(item: let item, position: let pos):
             item.drawPoints(marked: [pos])
@@ -353,11 +375,11 @@ class MZRViewModel {
             switch item.size {
             case .inf(continuous: let continuous, canCut: _) where continuous:
                 guard let path = outlinePath(item: item) else { break }
-                context.saveGState()
-                context.setLineDash(phase: 0, lengths: [4, 4])
-                context.addPath(path)
-                context.strokePath()
-                context.restoreGState()
+                ctx.saveGState()
+                ctx.setLineDash(phase: 0, lengths: [4, 4])
+                ctx.addPath(path)
+                ctx.strokePath()
+                ctx.restoreGState()
             default:
                 item.drawPoints()
             }
@@ -377,7 +399,7 @@ class MZRViewModel {
         for item in (sortedItems() + currentItem) {
             if item.isCompleted {
                 item.draw()
-                drawOutlineIfNeeded(item: item)
+                drawOutlineIfNeeded(item: item, in: context)
             } else {
                 item.drawArch()
             }
