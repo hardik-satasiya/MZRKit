@@ -230,6 +230,82 @@ extension MZRView {
         }
     }
     
+    #if os(OSX)
+    /// Set this value will also update the colors of selected items.
+    public var drawingColor: NSColor {
+        get {
+            return NSColor(cgColor: viewModel.drawingColor)!
+        }
+        set {
+            viewModel.drawingColor = newValue.cgColor
+        }
+    }
+    
+    public var scaleColor: NSColor {
+        get {
+            return NSColor(cgColor: viewModel.scaleColor)!
+        }
+        set {
+            viewModel.scaleColor = newValue.cgColor
+        }
+    }
+    
+    public var selectionBorderColor: NSColor {
+        get {
+            return NSColor(cgColor: viewModel.selectionBorderColor)!
+        }
+        set {
+            viewModel.selectionBorderColor = newValue.cgColor
+        }
+    }
+    
+    public var selectionBackgroundColor: NSColor {
+        get {
+            return NSColor(cgColor: viewModel.selectionBackgroundColor)!
+        }
+        set {
+            viewModel.selectionBackgroundColor = newValue.cgColor
+        }
+    }
+    #else
+    /// Set this value will also update the colors of selected items.
+    public var drawingColor: UIColor {
+        get {
+            return UIColor(cgColor: viewModel.drawingColor)
+        }
+        set {
+            viewModel.drawingColor = newValue.cgColor
+        }
+    }
+    
+    public var scaleColor: UIColor {
+        get {
+            return UIColor(cgColor: viewModel.scaleColor)
+        }
+        set {
+            viewModel.scaleColor = newValue.cgColor
+        }
+    }
+    
+    public var selectionBorderColor: UIColor {
+        get {
+            return NSColor(cgColor: viewModel.selectionBorderColor)!
+        }
+        set {
+            viewModel.selectionBorderColor = newValue.cgColor
+        }
+    }
+    
+    public var selectionBackgroundColor: UIColor {
+        get {
+            return NSColor(cgColor: viewModel.selectionBackgroundColor)
+        }
+        set {
+            viewModel.selectionBackgroundColor = newValue.cgColor
+        }
+    }
+    #endif
+    
     public var scaleStyle: ScaleStyle {
         get {
             switch viewModel.scale.scaleStyle {

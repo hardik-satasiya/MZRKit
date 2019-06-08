@@ -74,13 +74,30 @@ class MZRViewModel {
         }
     }
     
-    var scale = MZRScale()
-    
     // MARK: - Settings
+    
+    var scale = MZRScale()
     
     var rotatorEnabled = true {
         didSet {
             updateRotator()
+            shouldUpdate?()
+        }
+    }
+    
+    var drawingColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1) {
+        didSet {
+            if case .drawing(let item, _) = mode {
+                item.color = drawingColor
+            }
+            selectedItems.forEach { $0.color = drawingColor }
+            shouldUpdate?()
+        }
+    }
+    
+    var scaleColor = MZRMakeCGColor(r: 0, g: 1, b: 0, a: 1) {
+        didSet {
+            scale.scaleColor = scaleColor
             shouldUpdate?()
         }
     }
@@ -91,14 +108,9 @@ class MZRViewModel {
     
     var oulineColor = MZRMakeCGColor(r: 0, g: 1, b: 1, a: 1)
     
-    var selectionColors: (border: CGColor, background: CGColor) = (
-        MZRMakeCGColor(r: 1, g: 1, b: 1, a: 1),
-        MZRMakeCGColor(r: 0.3, g: 0.5, b: 0.5, a: 0.5)
-    ) {
-        didSet {
-            shouldUpdate?()
-        }
-    }
+    var selectionBorderColor = MZRMakeCGColor(r: 1, g: 1, b: 1, a: 1)
+    
+    var selectionBackgroundColor = MZRMakeCGColor(r: 0.3, g: 0.5, b: 0.5, a: 0.5)
     
     // MARK: - Getters
     
@@ -175,7 +187,9 @@ class MZRViewModel {
     
     func makeItem(type: MZRItem.Type) {
         normal()
-        mode = .drawing(item: type.init(), pressed: false)
+        let item = type.init()
+        item.color = drawingColor
+        mode = .drawing(item: item, pressed: false)
     }
     
     /// Become selection mode.
@@ -373,12 +387,12 @@ class MZRViewModel {
         rotator?.draw()
         
         if selectionRect != .null {
-            context.setFillColor(selectionColors.background)
-            context.setStrokeColor(selectionColors.border)
+            context.addRect(selectionRect)
+            context.setFillColor(selectionBackgroundColor)
+            context.fillPath()
             
             context.addRect(selectionRect)
-            context.fillPath()
-            context.addRect(selectionRect)
+            context.setStrokeColor(selectionBorderColor)
             context.strokePath()
         }
     }
