@@ -32,7 +32,7 @@ public class MZRPolyline: MZRItem, DistanceMeasurable {
     // MARK: - Life Cycle
     
     public required init() {
-        super.init(.inf(continuous: false, canCut: false))
+        super.init(.inf(continuous: false, cuttable: false))
     }
     
 }

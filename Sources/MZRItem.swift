@@ -11,7 +11,7 @@ extension MZRItem {
     
     public enum Size: Equatable, Hashable {
         case std(Int, Int)
-        case inf(continuous: Bool, canCut: Bool)
+        case inf(continuous: Bool, cuttable: Bool)
         
         func max() -> Int? {
             switch self {
@@ -95,7 +95,7 @@ public class MZRItem {
     // MARK: - Getters
     
     public var isCompleted: Bool {
-        guard case .std = size else { return true}
+        guard case .std = size else { return true }
         return points.flatMap({ $0 }).count == size.max()
     }
     
@@ -114,7 +114,7 @@ public class MZRItem {
     }
     
     required public init() {
-        self.size = Size.inf(continuous: false, canCut: false)
+        self.size = Size.inf(continuous: false, cuttable: false)
     }
     
     // MARK: - Edit
@@ -161,7 +161,7 @@ public class MZRItem {
     
     /// Move to the next column. `inf` size only.
     public func cut() {
-        guard case .inf(continuous: _, canCut: let canCut) = size, canCut else { return }
+        guard case .inf(continuous: _, cuttable: let cuttable) = size, cuttable else { return }
         guard let last = points.last, !last.isEmpty else { return }
         points.append([])
     }
@@ -206,9 +206,11 @@ public class MZRItem {
                 (idx == 0) ? context.move(to: point) : context.addLine(to: point)
             }
         }
+        context.saveGState()
         context.setStrokeColor(color)
         context.setLineDash(phase: 0, lengths: [2, 2])
         context.strokePath()
+        context.restoreGState()
     }
     
     public func draw() {
@@ -224,8 +226,10 @@ public class MZRItem {
                 }
             }
         }
+        context.saveGState()
         context.setStrokeColor(color)
         context.strokePath()
+        context.restoreGState()
     }
     
     // MARK: - Path

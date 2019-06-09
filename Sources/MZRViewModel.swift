@@ -49,8 +49,6 @@ class MZRViewModel {
                     newSelection.remove(at: index)
                 }
                 selectedItems = newSelection
-            } else {
-                shouldUpdate?()
             }
         }
     }
@@ -58,7 +56,6 @@ class MZRViewModel {
     var selectedItems = [MZRItem]() {
         didSet {
             updateRotator()
-            shouldUpdate?()
             
             let new = Set(selectedItems), old = Set(oldValue)
             let addeds = new.subtracting(old)
@@ -124,7 +121,7 @@ class MZRViewModel {
     private func outlinePath(item: MZRItem) -> CGPath? {
         guard let path = item.path() else { return nil }
         switch item.size {
-        case .inf(continuous: let continuous, canCut: _) where continuous:
+        case .inf(continuous: let continuous, cuttable: _) where continuous:
             let boundingBox = path.boundingBox.insetBy(dx: -10, dy: -10)
             return CGPath(rect: boundingBox, transform: nil)
         default:
@@ -203,6 +200,7 @@ class MZRViewModel {
 
         selectedItems = []
         mode = .select(selectionMode: .normal)
+        shouldUpdate?()
     }
     
     /// Rotate single selection,
@@ -221,7 +219,7 @@ class MZRViewModel {
             case .std(_, let row) where item.points.isEmpty || item.points.last?.count == row:
                 item.addPoint(location)
                 
-            case .inf(continuous: let continuous, canCut: _) where !continuous && item.points.isEmpty:
+            case .inf(continuous: let continuous, cuttable: _) where !continuous && item.points.isEmpty:
                 item.addPoint(location)
                 
             default: break
@@ -258,7 +256,7 @@ class MZRViewModel {
             case .std:
                 item.modifyPoint(location, at: (col, row))
                 
-            case .inf(continuous: let continuous, canCut: _):
+            case .inf(continuous: let continuous, cuttable: _):
                 continuous ? item.addPoint(location) : item.modifyPoint(location, at: (col, row))
             }
             
@@ -317,11 +315,12 @@ class MZRViewModel {
                 mode = .select(selectionMode: .normal)
                 itemFinished?(item)
                 
-            case .inf(continuous: _, let canCut) where canCut:
+            case .inf(continuous: _, let cuttable) where cuttable:
                 item.cut()
                 mode = .drawing(item: item, pressed: false)
                 
-            default: break
+            default:
+                mode = .drawing(item: item, pressed: false)
             }
             
         case .select(selectionMode: let selectionMode):
@@ -339,7 +338,6 @@ class MZRViewModel {
     // MARK: - Drawing
     
     private func drawAuxiliaryLine(_ item: MZRItem, at position: MZRItem.Position, in ctx: CGContext) {
-        guard item.isCompleted else { return }
         if case .inf(let continuous, _) = item.size, continuous { return }
         let p1 = item.points[position.0][position.1]
         let p2 = position.1 > 0 ? item.points[position.0][position.1 - 1] :
@@ -349,7 +347,6 @@ class MZRViewModel {
             let line = Line(from: p1, to: p2)
             let paralles = line.paralles(line.distance / 2)
             ctx.saveGState()
-            ctx.addLine(line)
             ctx.addLine(paralles.0)
             ctx.addLine(paralles.1)
             ctx.setStrokeColor(item.color)
@@ -358,31 +355,44 @@ class MZRViewModel {
         }
     }
     
-    private func drawOutlineIfNeeded(item: MZRItem, in ctx: CGContext) {
-        guard case .select(let selectionMode) = mode, selectedItems.contains(item) else { return }
-        
-        switch selectionMode {
-        case .draggingItems:
-            break
+    private func drawAdditionalOutline(_ targetItem: MZRItem, in ctx: CGContext) {
+        switch mode {
+        case .drawing(item: let item, pressed: let pressed) where item == targetItem && !(item is MZRRect):
+            item.drawArch()
+            if let row = item.points.last?.count.advanced(by: -1), pressed {
+                let col = item.points.count - 1
+                drawAuxiliaryLine(item, at: (col, row), in: ctx)
+            }
             
-        case .draggingPoint(let item, let position) where !(item is MZRRect):
-            drawAuxiliaryLine(item, at: position, in: ctx)
-            
-        case .onPoint(item: let item, position: let pos):
-            item.drawPoints(marked: [pos])
+        case .select(let selectionMode) where selectedItems.contains(targetItem):
+            switch selectionMode {
+            case .draggingItems:
+                break
+                
+            case .draggingPoint(let item, let position) where item == targetItem && !(item is MZRRect):
+                item.drawArch()
+                drawAuxiliaryLine(item, at: position, in: ctx)
+                
+            case .onPoint(item: let item, position: let pos) where item == targetItem:
+                item.drawPoints(marked: [pos])
+                
+            default:
+                switch targetItem.size {
+                case .inf(continuous: let continuous, cuttable: _) where continuous:
+                    guard let path = outlinePath(item: targetItem) else { break }
+                    ctx.saveGState()
+                    ctx.setLineDash(phase: 0, lengths: [4, 4])
+                    ctx.addPath(path)
+                    ctx.strokePath()
+                    ctx.restoreGState()
+                    
+                default:
+                    targetItem.drawPoints()
+                }
+            }
             
         default:
-            switch item.size {
-            case .inf(continuous: let continuous, canCut: _) where continuous:
-                guard let path = outlinePath(item: item) else { break }
-                ctx.saveGState()
-                ctx.setLineDash(phase: 0, lengths: [4, 4])
-                ctx.addPath(path)
-                ctx.strokePath()
-                ctx.restoreGState()
-            default:
-                item.drawPoints()
-            }
+            break
         }
     }
     
@@ -399,10 +409,8 @@ class MZRViewModel {
         for item in (sortedItems() + currentItem) {
             if item.isCompleted {
                 item.draw()
-                drawOutlineIfNeeded(item: item, in: context)
-            } else {
-                item.drawArch()
             }
+            drawAdditionalOutline(item, in: context)
         }
         
         rotator?.draw()

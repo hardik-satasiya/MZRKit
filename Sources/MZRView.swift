@@ -217,7 +217,8 @@ extension MZRView {
             return viewModel.items
         }
         set {
-            viewModel.items = newValue
+            viewModel.items = newValue.filter({ $0.isCompleted })
+            commonDisplay()
         }
     }
     
@@ -226,7 +227,8 @@ extension MZRView {
             return viewModel.selectedItems
         }
         set {
-            viewModel.selectedItems = newValue
+            viewModel.selectedItems = newValue.filter({ items.contains($0) })
+            commonDisplay()
         }
     }
     
@@ -349,7 +351,9 @@ extension MZRView {
         viewModel.items = newItems
     }
     
+    /// Rotate selected item if `rotatorEnabled` is `true`.
     public func rotate(_ radian: CGFloat) {
+        guard rotatorEnabled else { return }
         viewModel.rotate(radian)
     }
     
