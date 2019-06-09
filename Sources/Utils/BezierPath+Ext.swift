@@ -8,12 +8,12 @@
 #if os(OSX)
 extension NSBezierPath {
     
-    func appendLine(_ line: Line) {
+    public func appendLine(_ line: Line) {
         move(to: line.from)
         self.line(to: line.to)
     }
     
-    func appendArc(_ arc: Arc, pie: Bool = false) {
+    public func appendArc(_ arc: Arc, pie: Bool = false) {
         if pie { move(to: arc.center) }
         
         defer {
@@ -24,12 +24,12 @@ extension NSBezierPath {
                   clockwise: arc.clockwise)
     }
     
-    func appendCircle(_ circle: Circle) {
+    public func appendCircle(_ circle: Circle) {
         appendArc(withCenter: circle.center, radius: circle.radius,
                   startAngle: 0, endAngle: .pi * 2)
     }
     
-    func appendSquare(_ square: Square) {
+    public func appendSquare(_ square: Square) {
         move(to: square.points[0])
         line(to: square.points[1])
         line(to: square.points[2])
@@ -41,24 +41,24 @@ extension NSBezierPath {
 #else
 extension UIBezierPath {
     
-    func addLine(_ line: Line) {
+    public func addLine(_ line: Line) {
         move(to: line.from)
         addLine(to: line.to)
     }
     
-    func addArc(_ arc: Arc) {
+    public func addArc(_ arc: Arc) {
         addArc(withCenter: arc.center, radius: arc.radius,
                startAngle: arc.startAngle, endAngle: arc.endAngle,
                clockwise: arc.clockwise)
     }
     
-    func addCircle(_ circle: Circle) {
+    public func addCircle(_ circle: Circle) {
         addArc(withCenter: circle.center, radius: circle.radius,
                startAngle: 0, endAngle: .pi * 2,
                clockwise: true)
     }
     
-    func addSquare(_ square: Square) {
+    public func addSquare(_ square: Square) {
         move(to: square.points[0])
         addLine(to: square.points[1])
         addLine(to: square.points[2])

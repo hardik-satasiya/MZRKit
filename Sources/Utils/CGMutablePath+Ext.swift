@@ -9,11 +9,11 @@ import CoreGraphics
 
 extension CGMutablePath {
     
-    func addLine(_ line: Line) {
+    public func addLine(_ line: Line) {
         addLines(between: [line.from, line.to])
     }
     
-    func addArc(_ arc: Arc, pie: Bool = false) {
+    public func addArc(_ arc: Arc, pie: Bool = false) {
         if pie { move(to: arc.center) }
         
         defer {
@@ -24,13 +24,13 @@ extension CGMutablePath {
                clockwise: arc.clockwise)
     }
     
-    func addCircle(_ circle: Circle) {
+    public func addCircle(_ circle: Circle) {
         addArc(center: circle.center, radius: circle.radius,
                startAngle: 0, endAngle: .pi * 2,
                clockwise: true)
     }
     
-    func addSquare(_ square: Square) {
+    public func addSquare(_ square: Square) {
         addLines(between: square.points)
     }
     
