@@ -57,20 +57,18 @@ public class MZRRect: MZRItem, RectangleMeasurable {
     
     // MARK: - Edit
     
+    var testPoints = [CGPoint]()
+    
     private func updateFlip(unrotatedPoints: [CGPoint]) {
         guard unrotatedPoints.count == 8 else { return }
-        
-        if points[0][2].x - points[0][0].x < 0 {
+        var flip = Flip(rawValue: 0)
+        if unrotatedPoints[2].x - unrotatedPoints[0].x < 0 {
             flip.update(with: .horizontal)
-        } else {
-            flip.remove(.horizontal)
         }
-        
-        if points[0][0].y - points[0][5].y < 0 {
+        if unrotatedPoints[0].y - unrotatedPoints[5].y < 0 {
             flip.update(with: .vertical)
-        } else {
-            flip.remove(.vertical)
         }
+        self.flip = flip
     }
     
     public override func addPoint(_ point: CGPoint) {
@@ -97,44 +95,36 @@ public class MZRRect: MZRItem, RectangleMeasurable {
         guard let anchorPoint = anchorPoint() else { return }
         
         let index = position.1
-        var newPoints = points[0].enumerated().map({ $0 != index ? $1 : point }).rotated(center: anchorPoint, angle: -rotation)
+        var newPoints = points[0].enumerated().map({ $0 == index ? point : $1}).rotated(center: anchorPoint, angle: -rotation)
         
         switch index {
         case 0:
-            newPoints[2].y = newPoints[index].y
-            newPoints[5].x = newPoints[index].x
+            newPoints[2].y = newPoints[index].y; newPoints[5].x = newPoints[index].x
             
         case 2:
-            newPoints[0].y = newPoints[index].y
-            newPoints[7].x = newPoints[index].x
+            newPoints[0].y = newPoints[index].y; newPoints[7].x = newPoints[index].x
             
         case 7:
-            newPoints[2].x = newPoints[index].x
-            newPoints[5].y = newPoints[index].y
+            newPoints[2].x = newPoints[index].x; newPoints[5].y = newPoints[index].y
             
         case 5:
-            newPoints[0].x = newPoints[index].x
-            newPoints[7].y = newPoints[index].y
+            newPoints[0].x = newPoints[index].x; newPoints[7].y = newPoints[index].y
             
         case 1:
             let point = point.rotated(center: anchorPoint, angle: -rotation)
-            newPoints[0].y = point.y
-            newPoints[2].y = point.y
+            newPoints[0].y = point.y; newPoints[2].y = point.y
             
         case 3:
             let point = point.rotated(center: anchorPoint, angle: -rotation)
-            newPoints[2].x = point.x
-            newPoints[7].x = point.x
+            newPoints[2].x = point.x; newPoints[7].x = point.x
             
         case 4:
             let point = point.rotated(center: anchorPoint, angle: -rotation)
-            newPoints[5].y = point.y
-            newPoints[7].y = point.y
+            newPoints[5].y = point.y; newPoints[7].y = point.y
             
         case 6:
             let point = point.rotated(center: anchorPoint, angle: -rotation)
-            newPoints[0].x = point.x
-            newPoints[5].x = point.x
+            newPoints[0].x = point.x; newPoints[5].x = point.x
             
         default: return
         }
