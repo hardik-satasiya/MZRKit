@@ -174,6 +174,12 @@ public class MZRView: UIView {
 
 extension MZRView {
     
+    #if os(OSX)
+    public typealias Color = NSColor
+    #else
+    public typealias Color = UIColor
+    #endif
+    
     // MARK: - Internal Methods
     
     private func commonDisplay() {
@@ -210,113 +216,81 @@ extension MZRView {
         viewModel.draw(bounds)
     }
     
+    private func ColorFromCGColor(_ cgColor: CGColor) -> Color {
+        #if os(OSX)
+        return NSColor(cgColor: cgColor)!
+        #else
+        return UIColor(cgColor: cgColor)
+        #endif
+    }
+    
+    private func CGColorFromColor(_ color: Color) -> CGColor {
+        #if os(OSX)
+        return color.cgColor
+        #else
+        return color.cgColor
+        #endif
+    }
+    
     // MARK: - Interface
     
+    /// Returns all complted items.
     public var items: [MZRItem] {
-        get {
-            return viewModel.items
-        }
+        get { return viewModel.items }
         set {
             viewModel.items = newValue.filter({ $0.isCompleted })
             commonDisplay()
         }
     }
     
+    /// Returns the selected items.
     public var selectedItems: [MZRItem] {
-        get {
-            return viewModel.selectedItems
-        }
+        get { return viewModel.selectedItems }
         set {
             viewModel.selectedItems = newValue.filter({ items.contains($0) })
             commonDisplay()
         }
     }
     
-    public var rotatorEnabled: Bool {
-        get {
-            return viewModel.rotatorEnabled
-        }
-        set {
-            viewModel.rotatorEnabled = newValue
-        }
+    /// A Boolean value indicates item rotation is enabled.
+    public var isRotatorEnabled: Bool {
+        get { return viewModel.rotatorEnabled }
+        set { viewModel.rotatorEnabled = newValue }
     }
     
-    #if os(OSX)
-    /// Set this value will also update the colors of selected items.
-    public var drawingColor: NSColor {
-        get {
-            return NSColor(cgColor: viewModel.drawingColor)!
-        }
-        set {
-            viewModel.drawingColor = newValue.cgColor
-        }
+    // MARK: Color Settings
+    
+    /// Returns the current drawing color.
+    ///
+    /// Set this value will also update the colors of the selected items.
+    public var drawingColor: Color {
+        get { return ColorFromCGColor(viewModel.drawingColor) }
+        set { viewModel.drawingColor = CGColorFromColor(newValue) }
     }
     
-    public var scaleColor: NSColor {
-        get {
-            return NSColor(cgColor: viewModel.scaleColor)!
-        }
-        set {
-            viewModel.scaleColor = newValue.cgColor
-        }
+    /// Scale color.
+    public var scaleColor: Color {
+        get { return ColorFromCGColor(viewModel.scaleColor) }
+        set { viewModel.scaleColor = CGColorFromColor(newValue) }
     }
     
-    public var selectionBorderColor: NSColor {
-        get {
-            return NSColor(cgColor: viewModel.selectionBorderColor)!
-        }
-        set {
-            viewModel.selectionBorderColor = newValue.cgColor
-        }
+    /// Border color of selection rectangle.
+    public var selectionBorderColor: Color {
+        get { return ColorFromCGColor(viewModel.selectionBorderColor) }
+        set { viewModel.selectionBorderColor = CGColorFromColor(newValue) }
     }
     
-    public var selectionBackgroundColor: NSColor {
-        get {
-            return NSColor(cgColor: viewModel.selectionBackgroundColor)!
-        }
-        set {
-            viewModel.selectionBackgroundColor = newValue.cgColor
-        }
-    }
-    #else
-    /// Set this value will also update the colors of selected items.
-    public var drawingColor: UIColor {
-        get {
-            return UIColor(cgColor: viewModel.drawingColor)
-        }
-        set {
-            viewModel.drawingColor = newValue.cgColor
-        }
+    /// Background color of selection rectangle.
+    public var selectionBackgroundColor: Color {
+        get { return ColorFromCGColor(viewModel.selectionBackgroundColor) }
+        set { viewModel.selectionBackgroundColor = CGColorFromColor(newValue) }
     }
     
-    public var scaleColor: UIColor {
-        get {
-            return UIColor(cgColor: viewModel.scaleColor)
-        }
-        set {
-            viewModel.scaleColor = newValue.cgColor
-        }
-    }
-    
-    public var selectionBorderColor: UIColor {
-        get {
-            return NSColor(cgColor: viewModel.selectionBorderColor)!
-        }
-        set {
-            viewModel.selectionBorderColor = newValue.cgColor
-        }
-    }
-    
-    public var selectionBackgroundColor: UIColor {
-        get {
-            return NSColor(cgColor: viewModel.selectionBackgroundColor)
-        }
-        set {
-            viewModel.selectionBackgroundColor = newValue.cgColor
-        }
-    }
-    #endif
-    
+    /// Scale style.
+    ///
+    /// `MZRView` provides 2 diferrent scale styles:
+    /// 1. Cross Hair (FOV, Origin, Number of Bar)
+    /// 2. Grid (Number of grids)
     public var scaleStyle: ScaleStyle {
         get {
             switch viewModel.scale.scaleStyle {
@@ -338,10 +312,12 @@ extension MZRView {
         }
     }
     
+    /// Begin a drawing session  with `Item`.
     public func makeItem(_ item: Item) {
         viewModel.makeItem(type: item.itemType)
     }
     
+    /// Delete selection items.
     public func deleteSelectedItems() {
         var newItems = viewModel.items
         for item in viewModel.selectedItems {
@@ -353,12 +329,23 @@ extension MZRView {
     
     /// Rotate selected item if `rotatorEnabled` is `true`.
     public func rotate(_ radian: CGFloat) {
-        guard rotatorEnabled else { return }
+        guard isRotatorEnabled else { return }
         viewModel.rotate(radian)
     }
     
+    /// Become selection mode.
     public func normal() {
         viewModel.normal()
+    }
+    
+    /// Returns the item at the specified location.
+    public func item(at location: CGPoint) -> MZRItem? {
+        return viewModel.item(at: location)
+    }
+    
+    /// Returns a tuple contains the item and the position of the point the specified location lies in.
+    public func positionForItem(at location: CGPoint) -> (MZRItem, MZRItem.Position)? {
+        return viewModel.positionForItem(at: location)
     }
     
 }
