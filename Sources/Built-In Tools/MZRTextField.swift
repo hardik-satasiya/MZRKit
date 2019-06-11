@@ -9,7 +9,15 @@ import Foundation
 
 public class MZRTextField: MZRRect {
     
-    public var attributedString = NSAttributedString(string: "Text")
+    public var text = "Text"
+    
+    public var textColor = MZRColor.black
+    
+    #if os(OSX)
+    public var font = NSFont(name: "Helvetica", size: 17)!
+    #else
+    public var font = UIFont.systemFont(ofSize: 17)
+    #endif
     
     public var backgroundColor = MZRColor.clear
     
@@ -21,6 +29,8 @@ public class MZRTextField: MZRRect {
         context.translateBy(x: anchorPoint.x, y: anchorPoint.y)
         context.rotate(by: rotation)
         
+        let attributedString = NSAttributedString(string: text,
+                                                  attributes: [.foregroundColor: textColor, .font: font])
         let unrotated_p0 = points[0][0].rotated(center: anchorPoint, angle: -rotation)
         let p0 = CGPoint(x: unrotated_p0.x - anchorPoint.x, y: unrotated_p0.y - anchorPoint.y)
         let textSize = attributedString.size()
