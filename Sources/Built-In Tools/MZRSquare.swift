@@ -36,7 +36,7 @@ public class MZRSquare: MZRItem, RectangleMeasurable {
         context.saveGState()
         defer { context.restoreGState() }
         context.addSquare(square)
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         context.strokePath()
     }
     

@@ -65,13 +65,13 @@ public class MZRItem {
     
     // MARK: - Color Settings
     
-    public internal(set) var color = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1)
+    public internal(set) var color = MZRColor(red: 0, green: 0, blue: 0, alpha: 1)
     
-    public internal(set) var pointBorderColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1)
+    public internal(set) var pointBorderColor = MZRColor(red: 0, green: 0, blue: 0, alpha: 1)
     
-    public internal(set) var pointColor = MZRMakeCGColor(r: 1, g: 1, b: 1, a: 1)
+    public internal(set) var pointColor = MZRColor(red: 1, green: 1, blue: 1, alpha: 1)
     
-    public internal(set) var markedPointColor = MZRMakeCGColor(r: 0, g: 0.5, b: 1, a: 1)
+    public internal(set) var markedPointColor = MZRColor(red: 0, green: 0.5, blue: 1, alpha: 1)
     
     // MARK: - Rotation Settings
     
@@ -190,10 +190,10 @@ public class MZRItem {
         for (col, section) in points.enumerated() {
             for (row, point) in section.enumerated()  {context.addPath(pointBoxPath(point))
                 let bgColor = (marked?.contains { $0 == (col, row) } == true) ? markedPointColor : pointColor
-                context.setFillColor(bgColor)
+                context.setFillColor(bgColor.cgColor)
                 context.fillPath()
                 context.addPath(pointBoxPath(point))
-                context.setStrokeColor(pointBorderColor)
+                context.setStrokeColor(pointBorderColor.cgColor)
                 context.strokePath()
             }
         }
@@ -207,7 +207,7 @@ public class MZRItem {
             }
         }
         context.saveGState()
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         context.setLineDash(phase: 0, lengths: [2, 2])
         context.strokePath()
         context.restoreGState()
@@ -227,7 +227,7 @@ public class MZRItem {
             }
         }
         context.saveGState()
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         context.strokePath()
         context.restoreGState()
     }

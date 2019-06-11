@@ -174,12 +174,6 @@ public class MZRView: UIView {
 
 extension MZRView {
     
-    #if os(OSX)
-    public typealias Color = NSColor
-    #else
-    public typealias Color = UIColor
-    #endif
-    
     // MARK: - Internal Methods
     
     private func commonDisplay() {
@@ -216,22 +210,6 @@ extension MZRView {
         viewModel.draw(bounds)
     }
     
-    private func ColorFromCGColor(_ cgColor: CGColor) -> Color {
-        #if os(OSX)
-        return NSColor(cgColor: cgColor)!
-        #else
-        return UIColor(cgColor: cgColor)
-        #endif
-    }
-    
-    private func CGColorFromColor(_ color: Color) -> CGColor {
-        #if os(OSX)
-        return color.cgColor
-        #else
-        return color.cgColor
-        #endif
-    }
-    
     // MARK: - Interface
     
     /// Returns all complted items.
@@ -263,27 +241,27 @@ extension MZRView {
     /// Returns the current drawing color.
     ///
     /// Set this value will also update the colors of the selected items.
-    public var drawingColor: Color {
-        get { return ColorFromCGColor(viewModel.drawingColor) }
-        set { viewModel.drawingColor = CGColorFromColor(newValue) }
+    public var drawingColor: MZRColor {
+        get { return viewModel.drawingColor }
+        set { viewModel.drawingColor = newValue }
     }
     
     /// Scale color.
-    public var scaleColor: Color {
-        get { return ColorFromCGColor(viewModel.scaleColor) }
-        set { viewModel.scaleColor = CGColorFromColor(newValue) }
+    public var scaleColor: MZRColor {
+        get { return viewModel.scaleColor }
+        set { viewModel.scaleColor = newValue }
     }
     
     /// Border color of selection rectangle.
-    public var selectionBorderColor: Color {
-        get { return ColorFromCGColor(viewModel.selectionBorderColor) }
-        set { viewModel.selectionBorderColor = CGColorFromColor(newValue) }
+    public var selectionBorderColor: MZRColor {
+        get { return viewModel.selectionBorderColor }
+        set { viewModel.selectionBorderColor = newValue }
     }
     
     /// Background color of selection rectangle.
-    public var selectionBackgroundColor: Color {
-        get { return ColorFromCGColor(viewModel.selectionBackgroundColor) }
-        set { viewModel.selectionBackgroundColor = CGColorFromColor(newValue) }
+    public var selectionBackgroundColor: MZRColor {
+        get { return viewModel.selectionBackgroundColor }
+        set { viewModel.selectionBackgroundColor = newValue }
     }
     
     /// Scale style.

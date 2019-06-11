@@ -56,7 +56,7 @@ public class MZRAngle3: MZRItem, AngleMeasurable2 {
         context.saveGState()
         defer { context.restoreGState() }
         
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         
         if !arcs.isEmpty {
             for arc in arcs {

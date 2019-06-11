@@ -48,7 +48,7 @@ public class MZRAngle2: MZRItem, AngleMeasurable1 {
         arc.stroke()
         context.move(to: points[0][1])
         context.addLine(to: targetPoint)
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         context.strokePath()
     }
     

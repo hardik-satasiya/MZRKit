@@ -74,7 +74,7 @@ class MZRScale {
         ScaleStyle.grid(2)
 //        ScaleStyle.cross(10, .leftTop, .by10)
     
-    public var scaleColor = MZRMakeCGColor(r: 0, g: 1, b: 0, a: 1)
+    public var scaleColor = MZRColor.green
     
     // MARK: - Internal Drawing
     
@@ -83,7 +83,7 @@ class MZRScale {
         
         context.saveGState()
         defer { context.restoreGState() }
-        context.setStrokeColor(scaleColor)
+        context.setStrokeColor(scaleColor.cgColor)
         
         let directions: [(x: CGFloat, y: CGFloat)] = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         let pOrigin = origin.location(rect)
@@ -114,7 +114,7 @@ class MZRScale {
         
         context.saveGState()
         defer { context.restoreGState() }
-        context.setStrokeColor(scaleColor)
+        context.setStrokeColor(scaleColor.cgColor)
         
         let width = rect.width / CGFloat(value)
         let height = rect.height / CGFloat(value)

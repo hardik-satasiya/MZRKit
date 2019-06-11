@@ -97,7 +97,7 @@ class MZRViewModel {
         }
     }
     
-    var drawingColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1) {
+    var drawingColor = MZRColor(red: 0, green: 0, blue: 0, alpha: 1) {
         didSet {
             if case .drawing(let item, _) = mode {
                 item.color = drawingColor
@@ -107,7 +107,7 @@ class MZRViewModel {
         }
     }
     
-    var scaleColor = MZRMakeCGColor(r: 0, g: 1, b: 0, a: 1) {
+    var scaleColor = MZRColor.green {
         didSet {
             scale.scaleColor = scaleColor
             shouldUpdate?()
@@ -118,11 +118,11 @@ class MZRViewModel {
     
     var pointOutline = CGFloat(10)
     
-    var oulineColor = MZRMakeCGColor(r: 0, g: 1, b: 1, a: 1)
+    var oulineColor = MZRColor.cyan
     
-    var selectionBorderColor = MZRMakeCGColor(r: 1, g: 1, b: 1, a: 1)
+    var selectionBorderColor = MZRColor.white
     
-    var selectionBackgroundColor = MZRMakeCGColor(r: 0.3, g: 0.5, b: 0.5, a: 0.5)
+    var selectionBackgroundColor = MZRColor(red: 0.3, green: 0.5, blue: 0.5, alpha: 0.5)
     
     // MARK: - Getters
     
@@ -354,7 +354,7 @@ class MZRViewModel {
             ctx.saveGState()
             ctx.addLine(paralles.0)
             ctx.addLine(paralles.1)
-            ctx.setStrokeColor(item.color)
+            ctx.setStrokeColor(item.color.cgColor)
             ctx.strokePath()
             ctx.restoreGState()
         }
@@ -422,11 +422,11 @@ class MZRViewModel {
         
         if selectionRect != .null {
             context.addRect(selectionRect)
-            context.setFillColor(selectionBackgroundColor)
+            context.setFillColor(selectionBackgroundColor.cgColor)
             context.fillPath()
             
             context.addRect(selectionRect)
-            context.setStrokeColor(selectionBorderColor)
+            context.setStrokeColor(selectionBorderColor.cgColor)
             context.strokePath()
         }
     }

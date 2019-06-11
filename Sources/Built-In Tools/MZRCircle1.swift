@@ -37,7 +37,7 @@ public class MZRCircle1: MZRItem, CircleMeasurable {
         context.saveGState()
         defer { context.restoreGState() }
         context.addCircle(circle)
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         context.strokePath()
     }
     

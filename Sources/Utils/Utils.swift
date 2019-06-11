@@ -7,26 +7,10 @@
 
 // MARK: - Color
 
-func MZRMakeCGColor(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> CGColor {
-    #if os(OSX)
-    return CGColor(red: r, green: g, blue: b, alpha: a)
-    #else
-    return MZRMakeColor(r: r, g: g, b: b, a: a).cgColor
-    #endif
-}
-
 #if os(OSX)
-
-func MZRMakeColor(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> NSColor {
-    return NSColor(red: r, green: g, blue: b, alpha: a)
-}
-
+public typealias MZRColor = NSColor
 #else
-
-func MZRMakeColor(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
-    return UIColor(red: r, green: g, blue: b, alpha: a)
-}
-
+public typealias MZRColor = UIColor
 #endif
 
 // MARK: - Angle

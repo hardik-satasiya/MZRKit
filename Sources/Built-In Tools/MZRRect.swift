@@ -151,7 +151,7 @@ public class MZRRect: MZRItem, RectangleMeasurable {
         let cornerIndexes = [0, 2, 7, 5]
         context.addLines(between: cornerIndexes.map({ points[0][$0] }))
         context.closePath()
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         context.strokePath()
     }
     

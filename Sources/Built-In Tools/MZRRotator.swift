@@ -19,7 +19,7 @@ class MZRRotator: MZRItem {
     
     init(target: MZRItem) {
         super.init(.std(1, 1))
-        color = MZRMakeCGColor(r: 1, g: 0, b: 0, a: 1)
+        color = MZRColor.red
         targetItem = target
         
         if let anchorPoint = target.anchorPoint() {
@@ -68,7 +68,7 @@ class MZRRotator: MZRItem {
         let circle = Circle(center: points[0][0], radius: 1)
         context.saveGState()
         defer { context.restoreGState() }
-        context.setFillColor(color)
+        context.setFillColor(color.cgColor)
         circle.fill()
     }
     
@@ -77,7 +77,7 @@ class MZRRotator: MZRItem {
         let center = points[0][0]
         context.saveGState()
         defer { context.restoreGState() }
-        context.setStrokeColor(color)
+        context.setStrokeColor(color.cgColor)
         Circle(center: center, radius: radius).stroke()
         let len = radius * 1.5
         let vertical = Line(from: center.extended(length: len, angle: .pi / 2 + item.rotation),
