@@ -130,7 +130,7 @@ class MZRViewModel {
     private func sortedItems() -> [MZRItem] {
         let selecteds = selectedItems.reversed()
         let others = Set(items).subtracting(selecteds)
-        return selecteds + others.sorted { self.items.firstIndex(of: $0)! > self.items.firstIndex(of: $1)! }
+        return others.sorted { self.items.firstIndex(of: $0)! < self.items.firstIndex(of: $1)! } + selecteds
     }
     
     func item(at location: CGPoint) -> MZRItem? {
