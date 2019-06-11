@@ -11,7 +11,7 @@ public class MZRTextField: MZRRect {
     
     public var attributedString = NSAttributedString(string: "Text")
     
-    public var backgroundColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 1)
+    public var backgroundColor = MZRMakeCGColor(r: 0, g: 0, b: 0, a: 0)
     
     // MARK: - Drawing
     
