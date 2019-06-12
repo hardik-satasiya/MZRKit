@@ -27,6 +27,8 @@
 		63FF306B225A71EF007FA886 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3061225A71EF007FA886 /* Circle.swift */; };
 		850B719E22B0D97300DBC45F /* Modes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B719D22B0D97300DBC45F /* Modes.swift */; };
 		850B719F22B0D97300DBC45F /* Modes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B719D22B0D97300DBC45F /* Modes.swift */; };
+		850B71A122B0DC6700DBC45F /* ScaleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B71A022B0DC6700DBC45F /* ScaleStyle.swift */; };
+		850B71A222B0DC6700DBC45F /* ScaleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B71A022B0DC6700DBC45F /* ScaleStyle.swift */; };
 		850D4913229546DB0099816F /* Measurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D4912229546DB0099816F /* Measurable.swift */; };
 		850D4914229546DB0099816F /* Measurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D4912229546DB0099816F /* Measurable.swift */; };
 		852BA6412293D52A00457499 /* MZRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6402293D52A00457499 /* MZRView.swift */; };
@@ -82,6 +84,7 @@
 		63FF3060225A71EF007FA886 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		63FF3061225A71EF007FA886 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		850B719D22B0D97300DBC45F /* Modes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modes.swift; sourceTree = "<group>"; };
+		850B71A022B0DC6700DBC45F /* ScaleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleStyle.swift; sourceTree = "<group>"; };
 		850D4912229546DB0099816F /* Measurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurable.swift; sourceTree = "<group>"; };
 		852BA6402293D52A00457499 /* MZRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRView.swift; sourceTree = "<group>"; };
 		852BA6432293D6BE00457499 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 				63FF3061225A71EF007FA886 /* Circle.swift */,
 				852BA6462293D74500457499 /* Square.swift */,
 				850B719D22B0D97300DBC45F /* Modes.swift */,
+				850B71A022B0DC6700DBC45F /* ScaleStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -372,6 +376,7 @@
 				63C97B7A229AAD2100669F07 /* MZRRotator.swift in Sources */,
 				852BA65D2293E12900457499 /* MZRCircle1.swift in Sources */,
 				63FF30502258CD65007FA886 /* CGPoint+Ext.swift in Sources */,
+				850B71A122B0DC6700DBC45F /* ScaleStyle.swift in Sources */,
 				63FF3068225A71EF007FA886 /* Line.swift in Sources */,
 				852BA6412293D52A00457499 /* MZRView.swift in Sources */,
 			);
@@ -407,6 +412,7 @@
 				63C97B7B229AAD2100669F07 /* MZRRotator.swift in Sources */,
 				852BA65E2293E12900457499 /* MZRCircle1.swift in Sources */,
 				63FF3069225A71EF007FA886 /* Line.swift in Sources */,
+				850B71A222B0DC6700DBC45F /* ScaleStyle.swift in Sources */,
 				853A69DD225AE1860015CC29 /* BezierPath+Ext.swift in Sources */,
 				852BA6422293D52A00457499 /* MZRView.swift in Sources */,
 			);
