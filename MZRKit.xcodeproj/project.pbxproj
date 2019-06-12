@@ -25,6 +25,8 @@
 		63FF3069225A71EF007FA886 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3060225A71EF007FA886 /* Line.swift */; };
 		63FF306A225A71EF007FA886 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3061225A71EF007FA886 /* Circle.swift */; };
 		63FF306B225A71EF007FA886 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FF3061225A71EF007FA886 /* Circle.swift */; };
+		850B719E22B0D97300DBC45F /* Modes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B719D22B0D97300DBC45F /* Modes.swift */; };
+		850B719F22B0D97300DBC45F /* Modes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B719D22B0D97300DBC45F /* Modes.swift */; };
 		850D4913229546DB0099816F /* Measurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D4912229546DB0099816F /* Measurable.swift */; };
 		850D4914229546DB0099816F /* Measurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850D4912229546DB0099816F /* Measurable.swift */; };
 		852BA6412293D52A00457499 /* MZRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852BA6402293D52A00457499 /* MZRView.swift */; };
@@ -79,6 +81,7 @@
 		63FF305E225A71EF007FA886 /* Arc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arc.swift; sourceTree = "<group>"; };
 		63FF3060225A71EF007FA886 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		63FF3061225A71EF007FA886 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		850B719D22B0D97300DBC45F /* Modes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modes.swift; sourceTree = "<group>"; };
 		850D4912229546DB0099816F /* Measurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurable.swift; sourceTree = "<group>"; };
 		852BA6402293D52A00457499 /* MZRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MZRView.swift; sourceTree = "<group>"; };
 		852BA6432293D6BE00457499 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 				63FF3060225A71EF007FA886 /* Line.swift */,
 				63FF3061225A71EF007FA886 /* Circle.swift */,
 				852BA6462293D74500457499 /* Square.swift */,
+				850B719D22B0D97300DBC45F /* Modes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +360,7 @@
 				63FF306A225A71EF007FA886 /* Circle.swift in Sources */,
 				850D4913229546DB0099816F /* Measurable.swift in Sources */,
 				852BA65A2293E10C00457499 /* MZRSquare.swift in Sources */,
+				850B719E22B0D97300DBC45F /* Modes.swift in Sources */,
 				852BA6632293E13B00457499 /* MZRAngle1.swift in Sources */,
 				852BA6602293E12F00457499 /* MZRCircle2.swift in Sources */,
 				852BA6442293D6BE00457499 /* Utils.swift in Sources */,
@@ -390,6 +395,7 @@
 				63FF306B225A71EF007FA886 /* Circle.swift in Sources */,
 				850D4914229546DB0099816F /* Measurable.swift in Sources */,
 				852BA65B2293E10C00457499 /* MZRSquare.swift in Sources */,
+				850B719F22B0D97300DBC45F /* Modes.swift in Sources */,
 				852BA6642293E13B00457499 /* MZRAngle1.swift in Sources */,
 				852BA6612293E12F00457499 /* MZRCircle2.swift in Sources */,
 				852BA6452293D6BE00457499 /* Utils.swift in Sources */,
