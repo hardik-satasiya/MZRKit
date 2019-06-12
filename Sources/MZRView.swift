@@ -9,6 +9,8 @@ import Foundation
 
 public protocol MZRViewDelegate: AnyObject {
     
+    func mzrView(_ mzrView: MZRView, finishing item: MZRItem)
+    
     func mzrView(_ mzrView: MZRView, didFinish item: MZRItem)
     
     func mzrView(_ mzrView: MZRView, didModified item: MZRItem)
@@ -189,6 +191,10 @@ extension MZRView {
             self.commonDisplay()
         }
         
+        viewModel.finishingItem = { [unowned self] item in
+            self.delegate?.mzrView(self, finishing: item)
+        }
+        
         viewModel.itemFinished = { [unowned self] item in
             self.delegate?.mzrView(self, didFinish: item)
         }
@@ -211,6 +217,10 @@ extension MZRView {
     }
     
     // MARK: - Interface
+    
+    public var state: State {
+        return viewModel.state
+    }
     
     /// Returns all complted items.
     public var items: [MZRItem] {
@@ -262,6 +272,16 @@ extension MZRView {
     public var selectionBackgroundColor: MZRColor {
         get { return viewModel.selectionBackgroundColor }
         set { viewModel.selectionBackgroundColor = newValue }
+    }
+    
+    public var scaleOrigin: ScaleStyle.Origin? {
+        guard case .cross(_, let origin, _) = scaleStyle else { return nil }
+        return origin
+    }
+    
+    public var scaleDivision: ScaleStyle.Division? {
+        guard case .cross(_, _, let div) = scaleStyle else { return nil }
+        return div
     }
     
     /// Scale style.

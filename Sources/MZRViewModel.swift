@@ -20,26 +20,9 @@ extension MZRItem {
     
 }
 
-extension MZRViewModel {
-    
-    enum Mode {
-        case drawing(item: MZRItem, pressed :Bool)
-        case select(selectionMode: SelectionMode)
-    }
-    
-    enum SelectionMode {
-        case normal
-        case onItem(item: MZRItem)
-        case onPoint(item: MZRItem, position: MZRItem.Position)
-        case draggingItems
-        case draggingPoint(item: MZRItem, position: MZRItem.Position)
-    }
-    
-}
-
 class MZRViewModel {
     
-    private var mode = Mode.select(selectionMode: .normal)
+    var state = State.select(selectionMode: .normal)
     
     private var selectionRect = CGRect.null
     
@@ -99,7 +82,7 @@ class MZRViewModel {
     
     var drawingColor = MZRColor(red: 0, green: 0, blue: 0, alpha: 1) {
         didSet {
-            if case .drawing(let item, _) = mode {
+            if case .drawing(let item, _) = state {
                 item.color = drawingColor
             }
             selectedItems.forEach { $0.color = drawingColor }
@@ -123,6 +106,20 @@ class MZRViewModel {
     var selectionBorderColor = MZRColor.white
     
     var selectionBackgroundColor = MZRColor(red: 0.3, green: 0.5, blue: 0.5, alpha: 0.5)
+    
+    // MARK: - Event
+    
+    var shouldUpdate: (() -> Void)?
+    
+    var finishingItem: ((MZRItem) -> Void)?
+    
+    var itemFinished: ((MZRItem) -> Void)?
+    
+    var itemModified: ((MZRItem) -> Void)?
+    
+    var itemsSelected: (([MZRItem]) -> Void)?
+    
+    var itemsDeselected: (([MZRItem]) -> Void)?
     
     // MARK: - Getters
     
@@ -160,18 +157,6 @@ class MZRViewModel {
         return nil
     }
     
-    // MARK: - Event
-    
-    var shouldUpdate: (() -> Void)?
-    
-    var itemFinished: ((MZRItem) -> Void)?
-    
-    var itemModified: ((MZRItem) -> Void)?
-    
-    var itemsSelected: (([MZRItem]) -> Void)?
-    
-    var itemsDeselected: (([MZRItem]) -> Void)?
-    
     // MARK: - Life Cycle
     
     init() {
@@ -191,12 +176,12 @@ class MZRViewModel {
         normal()
         let item = type.init()
         item.color = drawingColor
-        mode = .drawing(item: item, pressed: false)
+        state = .drawing(item: item, pressed: false)
     }
     
     /// Become selection mode.
     func normal() {
-        if case .drawing(let item, _) = mode {
+        if case .drawing(let item, _) = state {
             if item.isCompleted, item.points.flatMap({ $0 }).count > 1 {
                 items.append(item)
                 itemFinished?(item)
@@ -204,7 +189,7 @@ class MZRViewModel {
         }
 
         selectedItems = []
-        mode = .select(selectionMode: .normal)
+        state = .select(selectionMode: .normal)
         shouldUpdate?()
     }
     
@@ -218,7 +203,7 @@ class MZRViewModel {
     // MARK: - Mouse / Touch Events
     
     func began(_ location: CGPoint) {
-        switch mode {
+        switch state {
         case .drawing(item: let item, pressed: _):
             switch item.size {
             case .std(_, let row) where item.points.isEmpty || item.points.last?.count == row:
@@ -231,16 +216,16 @@ class MZRViewModel {
             }
             
             item.addPoint(location)
-            mode = .drawing(item: item, pressed: true)
+            state = .drawing(item: item, pressed: true)
             
         case .select:
             if let (item, position) = positionForItem(at: location) {
-                mode = .select(selectionMode: .onPoint(item: item, position: position))
+                state = .select(selectionMode: .onPoint(item: item, position: position))
             } else if let item = item(at: location) {
                 if !selectedItems.contains(item) {
                     selectedItems = [item]
                 }
-                mode = .select(selectionMode: .onItem(item: item))
+                state = .select(selectionMode: .onItem(item: item))
             } else {
                 selectedItems = []
                 selectionRect.origin = CGPoint(x: round(location.x) + 0.5, y: round(location.y) + 0.5)
@@ -252,7 +237,7 @@ class MZRViewModel {
     }
     
     func moved(_ location: CGPoint) {
-        switch mode {
+        switch state {
         case .drawing(item: let item, pressed: _):
             let col = item.points.count - 1
             let row = item.points.last!.count - 1
@@ -260,20 +245,26 @@ class MZRViewModel {
             switch item.size {
             case .std:
                 item.modifyPoint(location, at: (col, row))
+                if item.isCompleted {
+                    finishingItem?(item)
+                }
                 
             case .inf(continuous: let continuous, cuttable: _):
                 continuous ? item.addPoint(location) : item.modifyPoint(location, at: (col, row))
+                if !continuous && item.isCompleted {
+                    finishingItem?(item)
+                }
             }
             
         case .select(selectionMode: let selectionMode):
             switch selectionMode {
             case .onItem:
-                mode = .select(selectionMode: .draggingItems)
+                state = .select(selectionMode: .draggingItems)
                 moved(location)
                 return
                 
             case .onPoint(item: let item, position: let position):
-                mode = .select(selectionMode: .draggingPoint(item: item, position: position))
+                state = .select(selectionMode: .draggingPoint(item: item, position: position))
                 moved(location)
                 return
                 
@@ -312,20 +303,19 @@ class MZRViewModel {
     }
     
     func ended(_ location: CGPoint) {
-        switch mode {
+        switch state {
         case .drawing(item: let item, pressed: _):
             switch item.size {
             case .std where item.isCompleted:
                 items.append(item)
-                mode = .select(selectionMode: .normal)
+                state = .select(selectionMode: .normal)
                 itemFinished?(item)
                 
             case .inf(continuous: _, let cuttable) where cuttable:
                 item.cut()
-                mode = .drawing(item: item, pressed: false)
-                
+                fallthrough
             default:
-                mode = .drawing(item: item, pressed: false)
+                state = .drawing(item: item, pressed: false)
             }
             
         case .select(selectionMode: let selectionMode):
@@ -333,7 +323,7 @@ class MZRViewModel {
                 selectedItems = [item]
             }
             selectionRect = .null
-            mode = .select(selectionMode: .normal)
+            state = .select(selectionMode: .normal)
         }
         
         lastLocation = nil
@@ -361,7 +351,7 @@ class MZRViewModel {
     }
     
     private func drawAdditionalOutline(_ targetItem: MZRItem, in ctx: CGContext) {
-        switch mode {
+        switch state {
         case .drawing(item: let item, pressed: let pressed) where item == targetItem && !(item is MZRRect):
             item.drawArch()
             if let row = item.points.last?.count.advanced(by: -1), pressed {
@@ -405,7 +395,7 @@ class MZRViewModel {
         guard let context = CGContext.current else { return }
         
         let currentItem = { () -> [MZRItem] in
-            guard case .drawing(let item, _) = mode else { return [] }
+            guard case .drawing(let item, _) = state else { return [] }
             return [item]
         }()
         
