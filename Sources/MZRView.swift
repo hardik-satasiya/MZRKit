@@ -82,17 +82,20 @@ public class MZRView: NSView {
     // MARK: - Mouse Events
     
     public override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
         let point = convert(event.locationInWindow, from: nil)
         window?.makeFirstResponder(nil)
         viewModel.began(point)
     }
     
     public override func mouseDragged(with event: NSEvent) {
+        super.mouseDragged(with: event)
         let point = convert(event.locationInWindow, from: nil)
         viewModel.moved(point)
     }
     
     public override func mouseUp(with event: NSEvent) {
+        super.mouseUp(with: event)
         let point = convert(event.locationInWindow, from: nil)
         viewModel.ended(point)
     }
