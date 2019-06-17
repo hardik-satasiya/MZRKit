@@ -30,6 +30,28 @@ class MZRViewModel {
     
     private var rotator: MZRRotator?
     
+    var fieldSize = CGSize.zero {
+        didSet {
+            let ms = CGSize(width: fieldSize.width / oldValue.width,
+                            height: fieldSize.height / oldValue.height)
+            zoom(ms)
+        }
+    }
+    
+    private func zoom(_ zoomScales: CGSize) {
+        let t = CGAffineTransform.identity.scaledBy(x: zoomScales.width, y: zoomScales.height)
+        for item in items {
+            for (c, section) in item.points.enumerated() {
+                for (r, point) in section.enumerated() {
+                    item.points[c][r] = point.applying(t)
+                }
+            }
+        }
+        if let rotator = rotator {
+            rotator.modifyPoint(rotator.points[0][0].applying(t), at: (0, 0))
+        }
+    }
+    
     // MARK: - Item
     
     var items = [MZRItem]() {

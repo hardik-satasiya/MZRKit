@@ -79,6 +79,11 @@ public class MZRView: NSView {
         commonInit()
     }
     
+    public override func layout() {
+        viewModel.fieldSize = bounds.size
+        super.layout()
+    }
+    
     // MARK: - Mouse Events
     
     public override func mouseDown(with event: NSEvent) {
@@ -118,6 +123,11 @@ public class MZRView: UIView {
     public required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         commonInit()
+    }
+    
+    public override func layoutSubviews() {
+        viewModel.fieldSize = bounds.size
+        super.layoutSubviews()
     }
     
     // MARK: - Touch Events
