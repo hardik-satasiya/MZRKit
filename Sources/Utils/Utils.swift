@@ -9,8 +9,10 @@
 
 #if os(OSX)
 public typealias MZRColor = NSColor
+public typealias MZRBezierPath = NSBezierPath
 #else
 public typealias MZRColor = UIColor
+public typealias MZRBezierPath = UIBezierPath
 #endif
 
 // MARK: - Angle
