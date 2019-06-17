@@ -91,17 +91,28 @@ public class MZRAngle3: MZRItem, AngleMeasurable2 {
             path.addLines(between: section)
         }
         
-        for arc in arcs {
-            let line1 = Line(from: arc.vertext, to: arc.point1)
-            let line2 = Line(from: arc.vertext, to: arc.point2)
-            let arc = Arc(center: arc.vertext, radius: 20,
-                          point1: arc.point1, point2: arc.point2)
-            path.addLine(line1)
-            path.addLine(line2)
-            path.addArc(arc, pie: true)
+        if !arcs.isEmpty {
+            for arc in arcs {
+                let line1 = Line(from: arc.vertext, to: arc.point1)
+                let line2 = Line(from: arc.vertext, to: arc.point2)
+                let arc = Arc(center: arc.vertext, radius: 20,
+                              point1: arc.point1, point2: arc.point2)
+                path.addLine(line1)
+                path.addLine(line2)
+                path.addArc(arc, pie: true)
+            }
+        } else if let crossPoint = crossPoint {
+            path.addLine(Line(from: points[0][0], to: crossPoint))
+            path.addLine(Line(from: points[1][0], to: crossPoint))
         }
         
         return path
+    }
+    
+    public override func canSelected(by rect: CGRect) -> Bool {
+        guard isCompleted, let crossPoint = crossPoint else { return false }
+        return Line(from: points[0][0], to: crossPoint).canSelected(by: rect) ||
+            Line(from: points[1][0], to: crossPoint).canSelected(by: rect)
     }
     
 }

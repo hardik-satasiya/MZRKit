@@ -44,11 +44,11 @@ public class MZRAngle2: MZRItem, AngleMeasurable1 {
         guard let context = CGContext.current, let targetPoint = targetPoint, let arc = arc else { return }
         context.saveGState()
         defer { context.restoreGState() }
+        color.setStroke()
         context.setLineDash(phase: 0, lengths: [3, 3])
         arc.stroke()
         context.move(to: points[0][1])
         context.addLine(to: targetPoint)
-        context.setStrokeColor(color.cgColor)
         context.strokePath()
     }
     
