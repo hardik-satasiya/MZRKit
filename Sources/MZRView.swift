@@ -256,6 +256,12 @@ extension MZRView {
         set { viewModel.selectionBackgroundColor = newValue }
     }
     
+    /// Returns crosshair scale FOV.
+    public var fov: CGFloat? {
+        guard case .cross(let fov, _, _) = scaleStyle else { return nil }
+        return fov
+    }
+    
     /// Returns the crosshair scale origin.
     public var scaleOrigin: ScaleOrigin? {
         guard case .cross(_, let origin, _) = scaleStyle else { return nil }
