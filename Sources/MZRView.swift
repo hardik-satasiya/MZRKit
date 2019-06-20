@@ -19,6 +19,8 @@ public protocol MZRViewDelegate: AnyObject {
     
     func mzrView(_ mzrView: MZRView, didDeselect items: [MZRItem])
     
+    func mzrView(_ mzrView: MZRView, descriptionForItem item: MZRItem) -> NSAttributedString?
+    
     #if os(OSX)
     func mzrView(mzrView: MZRView, menuForSelectedItems items: [MZRItem]) -> NSMenu?
     #endif
@@ -207,6 +209,10 @@ extension MZRView {
         
         viewModel.itemsDeselected = { [unowned self] items in
             self.delegate?.mzrView(self, didDeselect: items)
+        }
+        
+        viewModel.requestForDescription = { [unowned self] item in
+            return self.delegate?.mzrView(self, descriptionForItem: item)
         }
     }
     

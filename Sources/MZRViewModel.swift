@@ -143,6 +143,8 @@ class MZRViewModel {
     
     var itemsDeselected: (([MZRItem]) -> Void)?
     
+    var requestForDescription: ((MZRItem) -> NSAttributedString?)?
+    
     // MARK: - Getters
     
     /// Selected items > unselected items.
@@ -415,6 +417,13 @@ class MZRViewModel {
         }
     }
     
+    func drawDescription(_ desc: NSAttributedString, for item: MZRItem) {
+        if let boundingBox = item.path()?.boundingBox {
+            let point = CGPoint(x: boundingBox.maxX, y: boundingBox.maxY)
+            desc.draw(at: point)
+        }
+    }
+    
     func draw(_ rect: CGRect) {
         guard let context = CGContext.current else { return }
         
@@ -430,6 +439,11 @@ class MZRViewModel {
                 item.draw()
             }
             drawAdditionalOutline(item, in: context)
+            if item.isCompleted {
+                if let desc = requestForDescription?(item) {
+                    drawDescription(desc, for: item)
+                }
+            }
         }
         
         rotator?.draw()
