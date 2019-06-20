@@ -12,7 +12,7 @@ public class MZRAngle1: MZRItem, AngleMeasurable1 {
     public internal(set) override var points: [[CGPoint]] {
         didSet {
             guard isCompleted else { return }
-            angle = MZRCalcAngle(points[0][0], points[0][1], points[0][2]) ?? 0
+            angle = MZRCalcAngle(points[0][1], points[0][0], points[0][2]) ?? 0
             arc = Arc(center: points[0][1], radius: 20, point1: points[0][0], point2: points[0][2])
         }
     }
