@@ -386,9 +386,11 @@ class MZRViewModel {
             case .draggingItems:
                 break
                 
-            case .draggingPoint(let item, let position) where item == targetItem && !(item is MZRRect):
-                item.drawArch()
-                drawAuxiliaryLine(item, at: position, in: ctx)
+            case .draggingPoint(let item, let position) where item == targetItem:
+                if !(item is MZRRect) {
+                    item.drawArch()
+                    drawAuxiliaryLine(item, at: position, in: ctx)
+                }
                 
             case .onPoint(item: let item, position: let pos) where item == targetItem:
                 item.drawPoints(marked: [pos])

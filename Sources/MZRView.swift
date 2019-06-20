@@ -19,6 +19,10 @@ public protocol MZRViewDelegate: AnyObject {
     
     func mzrView(_ mzrView: MZRView, didDeselect items: [MZRItem])
     
+    #if os(OSX)
+    func mzrView(mzrView: MZRView, menuForSelectedItems items: [MZRItem]) -> NSMenu?
+    #endif
+    
 }
 
 extension MZRView {
@@ -103,6 +107,18 @@ public class MZRView: NSView {
         super.mouseUp(with: event)
         let point = convert(event.locationInWindow, from: nil)
         viewModel.ended(point)
+    }
+    
+    public override func rightMouseDown(with event: NSEvent) {
+        super.rightMouseDown(with: event)
+        let point = convert(event.locationInWindow, from: nil)
+        if let item = viewModel.item(at: point), selectedItems.contains(item) {
+            let menu = delegate?.mzrView(mzrView: self, menuForSelectedItems: selectedItems)
+            
+            if let menu = menu {
+                NSMenu.popUpContextMenu(menu, with: event, for: self)
+            }
+        }
     }
     
 }
@@ -307,7 +323,7 @@ extension MZRView {
             guard let index = newItems.firstIndex(of: item) else { continue }
             newItems.remove(at: index)
         }
-        viewModel.items = newItems
+        items = newItems
     }
     
     /// Rotate selected item if `rotatorEnabled` is `true`.
