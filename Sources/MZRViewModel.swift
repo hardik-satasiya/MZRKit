@@ -417,15 +417,39 @@ class MZRViewModel {
         }
     }
     
-    func drawDescription(_ desc: NSAttributedString, for item: MZRItem) {
-        if let boundingBox = item.path()?.boundingBox {
-            let point = CGPoint(x: boundingBox.maxX, y: boundingBox.maxY)
-            desc.draw(at: point)
+    func drawDescription(_ desc: NSAttributedString, for item: MZRItem, in frame: CGRect) {
+        guard let ctx = CGContext.current else { return }
+        guard let boundingBox = item.path()?.boundingBox else { return }
+        
+        // Border rect
+        let borderSize = CGSize(width: desc.size().width + 8, height: desc.size().height + 8)
+        var borderFrame = CGRect(x: boundingBox.maxX + 4, y: boundingBox.maxY + 4, width: borderSize.width, height: borderSize.height)
+        
+        if borderFrame.maxX + 4 > frame.maxX {
+            borderFrame.origin.x = boundingBox.minX - 4 - borderSize.width
         }
+        if borderFrame.maxY + 4 > frame.maxY {
+            borderFrame.origin.y = boundingBox.minY - 4 - borderSize.height
+        }
+        
+        let borderPath = CGPath(roundedRect: borderFrame, cornerWidth: 5, cornerHeight: 5, transform: nil)
+        
+        if selectedItems.contains(item) {
+            let cgColor = MZRColor(red: 0, green: 1, blue: 1, alpha: 0.5).cgColor
+            ctx.addPath(borderPath)
+            ctx.setFillColor(cgColor)
+            ctx.fillPath()
+        }
+        
+        ctx.addPath(borderPath)
+        ctx.strokePath()
+        
+        let descOrigin = CGPoint(x: borderFrame.minX + 4, y: borderFrame.minY + 4)
+        desc.draw(at: descOrigin)
     }
     
     func draw(_ rect: CGRect) {
-        guard let context = CGContext.current else { return }
+        guard let ctx = CGContext.current else { return }
         
         let currentItem = { () -> [MZRItem] in
             guard case .drawing(let item, _) = state else { return [] }
@@ -438,10 +462,10 @@ class MZRViewModel {
             if item.isCompleted {
                 item.draw()
             }
-            drawAdditionalOutline(item, in: context)
+            drawAdditionalOutline(item, in: ctx)
             if item.isCompleted {
                 if let desc = requestForDescription?(item) {
-                    drawDescription(desc, for: item)
+                    drawDescription(desc, for: item, in: rect)
                 }
             }
         }
@@ -449,13 +473,13 @@ class MZRViewModel {
         rotator?.draw()
         
         if selectionRect != .null {
-            context.addRect(selectionRect)
-            context.setFillColor(selectionBackgroundColor.cgColor)
-            context.fillPath()
+            ctx.addRect(selectionRect)
+            ctx.setFillColor(selectionBackgroundColor.cgColor)
+            ctx.fillPath()
             
-            context.addRect(selectionRect)
-            context.setStrokeColor(selectionBorderColor.cgColor)
-            context.strokePath()
+            ctx.addRect(selectionRect)
+            ctx.setStrokeColor(selectionBorderColor.cgColor)
+            ctx.strokePath()
         }
     }
     
