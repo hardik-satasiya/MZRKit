@@ -36,6 +36,7 @@ public class MZRAngle1: MZRItem, AngleMeasurable1 {
         context.saveGState()
         defer { context.restoreGState() }
         context.setLineDash(phase: 0, lengths: [3, 3])
+        context.setStrokeColor(color.cgColor)
         arc.stroke(pie: true)
     }
     
