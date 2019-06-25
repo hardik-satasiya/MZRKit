@@ -421,15 +421,29 @@ class MZRViewModel {
         guard let ctx = CGContext.current else { return }
         guard let boundingBox = item.path()?.boundingBox else { return }
         
+        ctx.saveGState()
+        defer {
+            ctx.restoreGState()
+        }
+        
         // Border rect
         let borderSize = CGSize(width: desc.size().width + 8, height: desc.size().height + 8)
         var borderFrame = CGRect(x: boundingBox.maxX + 4, y: boundingBox.maxY + 4, width: borderSize.width, height: borderSize.height)
         
         if borderFrame.maxX + 4 > frame.maxX {
-            borderFrame.origin.x = boundingBox.minX - 4 - borderSize.width
+            let offset = borderFrame.maxX + 4 - frame.maxX
+            borderFrame.origin.x -= offset
+        } else if borderFrame.minX - 4 < frame.minX {
+            let offset = frame.minX - (borderFrame.minX - 4)
+            borderFrame.origin.x += offset
         }
+        
         if borderFrame.maxY + 4 > frame.maxY {
-            borderFrame.origin.y = boundingBox.minY - 4 - borderSize.height
+            let offset = borderFrame.maxY + 4 - frame.maxY
+            borderFrame.origin.y -= offset
+        } else if borderFrame.minY - 4 < frame.minY {
+            let offset = frame.minY - (borderFrame.minY - 4)
+            borderFrame.origin.y += offset
         }
         
         let borderPath = CGPath(roundedRect: borderFrame, cornerWidth: 5, cornerHeight: 5, transform: nil)
@@ -442,6 +456,7 @@ class MZRViewModel {
         }
         
         ctx.addPath(borderPath)
+        ctx.setStrokeColor(.black)
         ctx.strokePath()
         
         let descOrigin = CGPoint(x: borderFrame.minX + 4, y: borderFrame.minY + 4)
