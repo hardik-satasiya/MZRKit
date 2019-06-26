@@ -456,7 +456,7 @@ class MZRViewModel {
         }
         
         ctx.addPath(borderPath)
-        ctx.setStrokeColor(.black)
+        ctx.setStrokeColor(MZRColor(red: 0, green: 0, blue: 0, alpha: 1).cgColor)
         ctx.strokePath()
         
         let descOrigin = CGPoint(x: borderFrame.minX + 4, y: borderFrame.minY + 4)
