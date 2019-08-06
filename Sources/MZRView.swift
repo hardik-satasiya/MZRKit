@@ -178,7 +178,7 @@ extension MZRView {
     
     // MARK: - Internal Methods
     
-    private func commonDisplay() {
+    private func needDisplay() {
         #if os(OSX)
         self.needsDisplay = true
         #else
@@ -188,7 +188,7 @@ extension MZRView {
     
     private func commonInit() {
         viewModel.shouldUpdate = { [unowned self] in
-            self.commonDisplay()
+            self.needDisplay()
         }
         
         viewModel.finishingItem = { [unowned self] item in
@@ -231,7 +231,7 @@ extension MZRView {
         get { return viewModel.items }
         set {
             viewModel.items = newValue.filter({ $0.isCompleted })
-            commonDisplay()
+            needDisplay()
         }
     }
     
@@ -240,7 +240,7 @@ extension MZRView {
         get { return viewModel.selectedItems }
         set {
             viewModel.selectedItems = newValue.filter({ items.contains($0) })
-            commonDisplay()
+            needDisplay()
         }
     }
     
@@ -278,43 +278,21 @@ extension MZRView {
         set { viewModel.selectionBackgroundColor = newValue }
     }
     
-    /// Returns crosshair scale FOV.
-    public var fov: CGFloat? {
-        guard case .cross(let fov, _, _) = scaleStyle else { return nil }
-        return fov
+    public var fov: CGFloat {
+        get { viewModel.scale.fov }
+        set { viewModel.scale.fov = newValue; needDisplay() }
     }
     
     /// Returns the crosshair scale origin.
-    public var scaleOrigin: ScaleOrigin? {
-        guard case .cross(_, let origin, _) = scaleStyle else { return nil }
-        return origin
+    public var scaleOrigin: ScaleOrigin {
+        get { viewModel.scale.scaleOrigin }
+        set { viewModel.scale.scaleOrigin = newValue; needDisplay() }
     }
     
     /// Returns the crosshair scale bar division.
-    public var scaleDivision: ScaleDivision? {
-        guard case .cross(_, _, let div) = scaleStyle else { return nil }
-        return div
-    }
-    
-    /// Returns the number of grid scale.
-    public var numberOfScaleGrids: Int? {
-        guard case .grid(let num) = scaleStyle else { return nil }
-        return num
-    }
-    
-    /// Scale style.
-    ///
-    /// `MZRView` provides 2 diferrent scale styles:
-    /// 1. Cross Hair (FOV, Origin, Number of Bar)
-    /// 2. Grid (Number of grids)
-    public var scaleStyle: ScaleStyle {
-        get {
-            return viewModel.scale.scaleStyle
-        }
-        set {
-            viewModel.scale.scaleStyle = newValue
-            commonDisplay()
-        }
+    public var scaleDivision: ScaleDivision {
+        get { viewModel.scale.division }
+        set { viewModel.scale.division = newValue; needDisplay() }
     }
     
     /// Begin a drawing session  with `Item`.

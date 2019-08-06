@@ -11,9 +11,14 @@ class MZRScale {
     
     // MARK: - Settings
     
-    public var scaleStyle =
-        ScaleStyle.grid(2)
+//    public var scaleStyle = ScaleStyle.grid(2)
 //        ScaleStyle.cross(10, .leftTop, .by10)
+    
+    public var scaleOrigin = ScaleOrigin.center
+    
+    public var fov = CGFloat(0)
+    
+    public var division = ScaleDivision.by10
     
     public var scaleColor = MZRColor.green
     
@@ -50,27 +55,28 @@ class MZRScale {
         Line(from: CGPoint(x: 0, y: pOrigin.y), to: CGPoint(x: rect.maxX, y: pOrigin.y)).stroke()
     }
     
-    private func drawGrid(rect: CGRect, value: Int) {
-        guard let context = CGContext.current, value > 1 else { return }
-        
-        context.saveGState()
-        defer { context.restoreGState() }
-        context.setStrokeColor(scaleColor.cgColor)
-        
-        let width = rect.width / CGFloat(value)
-        let height = rect.height / CGFloat(value)
-        
-        for i in 1..<value {
-            Line(from: CGPoint(x: width * CGFloat(i), y: 0), to: CGPoint(x: width * CGFloat(i), y: rect.maxY)).stroke()
-            Line(from: CGPoint(x: 0, y: height * CGFloat(i)), to: CGPoint(x: rect.maxX, y: height * CGFloat(i))).stroke()
-        }
-    }
+//    private func drawGrid(rect: CGRect, value: Int) {
+//        guard let context = CGContext.current, value > 1 else { return }
+//
+//        context.saveGState()
+//        defer { context.restoreGState() }
+//        context.setStrokeColor(scaleColor.cgColor)
+//
+//        let width = rect.width / CGFloat(value)
+//        let height = rect.height / CGFloat(value)
+//
+//        for i in 1..<value {
+//            Line(from: CGPoint(x: width * CGFloat(i), y: 0), to: CGPoint(x: width * CGFloat(i), y: rect.maxY)).stroke()
+//            Line(from: CGPoint(x: 0, y: height * CGFloat(i)), to: CGPoint(x: rect.maxX, y: height * CGFloat(i))).stroke()
+//        }
+//    }
     
     public func draw(_ rect: CGRect) {
-        switch scaleStyle {
-        case .cross(let value, let origin, let div): drawCross(rect: rect, value: value, origin: origin, division: div)
-        case .grid(let value): drawGrid(rect: rect, value: value)
-        }
+//        switch scaleStyle {
+//        case .cross(let value, let origin, let div): drawCross(rect: rect, value: value, origin: origin, division: div)
+//        case .grid(let value): drawGrid(rect: rect, value: value)
+//        }
+        drawCross(rect: rect, value: fov, origin: scaleOrigin, division: division)
     }
     
 }
