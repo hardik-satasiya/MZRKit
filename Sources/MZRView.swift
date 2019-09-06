@@ -311,7 +311,7 @@ extension MZRView {
     }
     
     /// Rotate selected item if `rotatorEnabled` is `true`.
-    public func rotate(_ radian: CGFloat) {
+    public func rotateSelectedItem(_ radian: CGFloat) {
         guard isRotatorEnabled else { return }
         viewModel.rotate(radian)
     }

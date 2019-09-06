@@ -143,11 +143,12 @@ public class MZRItem {
         
         for (col, section) in newPoints.enumerated() {
             for (row, point) in section.enumerated() {
-                newPoints[col][row] = CGPoint(x: point.x + x, y: point.y + y)
+//                newPoints[col][row] = CGPoint(x: point.x + x, y: point.y + y)
+                modifyPoint(CGPoint(x: point.x + x, y: point.y + y), at: (col, row))
             }
         }
         
-        points = newPoints
+//        points = newPoints
     }
     
     /// `offset(x:y:at:)` calls `modifyPoint()` to edit point at `position`.

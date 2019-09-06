@@ -171,8 +171,10 @@ class MZRViewModel {
             return nil
         }
         
-        for (col, section) in selectedItem.points.enumerated() {
-            for (row, point) in section.enumerated() {
+        for (_col, section) in selectedItem.points.reversed().enumerated() {
+            let col = (selectedItem.points.count - 1) - _col
+            for (_row, point) in section.reversed().enumerated() {
+                let row = (section.count - 1) - _row
                 if Line(from: point, to: location).distance < pointOutline {
                     return (selectedItem, (col, row))
                 }
@@ -226,12 +228,24 @@ class MZRViewModel {
     
     // MARK: - Mouse / Touch Events
     
+    private func stickLineTrackableItem(_ line: MZRLine, at position: MZRItem.Position) {
+        for trackable in items.compactMap({ $0 as? LineTrackable }) {
+            guard trackable.canSetTracker(line, at: position) else { continue }
+            guard trackable.tracker != line || trackable.trackerPosition == position else { continue }
+            trackable.setTracker(line, position: position)
+            break
+        }
+    }
+    
     func began(_ location: CGPoint) {
         switch state {
         case .drawing(item: let item, pressed: _):
             switch item.size {
             case .std(_, let row) where item.points.isEmpty || item.points.last?.count == row:
                 item.addPoint(location)
+                if let line = item as? MZRLine {
+                    stickLineTrackableItem(line, at: (0, 0))
+                }
                 
             case .inf(continuous: let continuous, cuttable: _) where !continuous && item.points.isEmpty:
                 item.addPoint(location)
@@ -269,6 +283,11 @@ class MZRViewModel {
             switch item.size {
             case .std:
                 item.modifyPoint(location, at: (col, row))
+                
+                if let line = item as? MZRLine {
+                    stickLineTrackableItem(line, at: (col, row))
+                }
+                
                 if item.isCompleted {
                     finishingItem?(item)
                 }
@@ -309,6 +328,10 @@ class MZRViewModel {
                 if item != rotator {
                     if let rotator = rotator, let anchorPoint = rotator.targetItem?.anchorPoint() {
                         rotator.points[0][0] = anchorPoint
+                    }
+                    
+                    if let line = item as? MZRLine {
+                        stickLineTrackableItem(line, at: position)
                     }
                     
                     itemModified?(item)
@@ -449,7 +472,12 @@ class MZRViewModel {
         let borderPath = CGPath(roundedRect: borderFrame, cornerWidth: 5, cornerHeight: 5, transform: nil)
         
         if selectedItems.contains(item) {
-            let cgColor = MZRColor(red: 0, green: 1, blue: 1, alpha: 0.5).cgColor
+            let cgColor = MZRColor(red: 0, green: 1, blue: 1, alpha: 0.7).cgColor
+            ctx.addPath(borderPath)
+            ctx.setFillColor(cgColor)
+            ctx.fillPath()
+        } else {
+            let cgColor = MZRColor(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor
             ctx.addPath(borderPath)
             ctx.setFillColor(cgColor)
             ctx.fillPath()

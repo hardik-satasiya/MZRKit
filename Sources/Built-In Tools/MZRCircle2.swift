@@ -5,9 +5,12 @@
 //  Created by scchnxx on 2019/5/21.
 //
 
-public class MZRCircle2: MZRItem, CircleMeasurable {
+public class MZRCircle2: MZRItem, CircleMeasurable, LineTrackable {
     
     private var circle: Circle?
+    weak var tracker: MZRLine?
+    var trackerPosition = Position(0, 0)
+    var trackedPoint: CGPoint { center }
     
     public internal(set) override var points: [[CGPoint]] {
         didSet {
@@ -28,6 +31,18 @@ public class MZRCircle2: MZRItem, CircleMeasurable {
         super.init(.std(1, 3))
     }
     
+    public override func modifyPoint(_ point: CGPoint, at position: MZRItem.Position) {
+        let shouldUpdateTracker = tracker?.points[trackerPosition.0][trackerPosition.1] == trackedPoint
+        
+        super.modifyPoint(point, at: position)
+        
+        if shouldUpdateTracker {
+            updateTracker()
+        } else {
+            removeTracker()
+        }
+    }
+    
     // MARK: - Drawing
     
     public override func draw() {
@@ -36,9 +51,11 @@ public class MZRCircle2: MZRItem, CircleMeasurable {
         guard let circle = Circle(points[0][0], points[0][1], points[0][2]) else { return }
         context.saveGState()
         defer { context.restoreGState() }
-        context.addCircle(circle)
-        context.setStrokeColor(color.cgColor)
-        context.strokePath()
+        color.setStroke()
+        circle.stroke()
+        let centerCircle = Circle(center: circle.center, radius: 2)
+        color.setFill()
+        centerCircle.fill()
     }
     
     public override func path() -> CGPath? {
